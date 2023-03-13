@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:boring_counter/di/injectable/configure_injectable.dart';
 import 'package:boring_counter/l10n/l10n.dart';
 import 'package:boring_counter/routing/app_router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
   App({super.key});

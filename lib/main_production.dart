@@ -1,9 +1,9 @@
-import 'package:flutter/widgets.dart';
-import 'package:boring_counter/app/app.dart';
 import 'package:boring_counter/bootstrap.dart';
 import 'package:boring_counter/config/dart/dart_config.dart';
 import 'package:boring_counter/config/firebase/firebase_config.dart';
 import 'package:boring_counter/di/injectable/all.dart';
+import 'package:boring_counter/presentation/app/app.dart';
+import 'package:flutter/widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:injectable/injectable.dart';
-import 'package:boring_counter/counter/counter.dart';
+import 'package:boring_counter/presentation/counter/counter.dart';
 import 'package:boring_counter/presentation/dashboard/dashboard.dart';
 import 'package:boring_counter/presentation/home/home.dart';
 import 'package:boring_counter/presentation/splash/splash.dart';
+import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'app_router.gr.dart';
 
