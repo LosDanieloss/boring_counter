@@ -29,10 +29,10 @@ class _$AppRouter extends RootStackRouter {
         child: const DashboardPage(),
       );
     },
-    HomeRoute.name: (routeData) {
+    CounterListRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: const CounterListPage(),
       );
     },
     CounterRoute.name: (routeData) {
@@ -61,7 +61,7 @@ class _$AppRouter extends RootStackRouter {
               fullMatch: true,
             ),
             RouteConfig(
-              HomeRoute.name,
+              CounterListRoute.name,
               path: 'home',
               parent: DashboardRoute.name,
             ),
@@ -101,15 +101,15 @@ class DashboardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
+/// [CounterListPage]
+class CounterListRoute extends PageRouteInfo<void> {
+  const CounterListRoute()
       : super(
-          HomeRoute.name,
+          CounterListRoute.name,
           path: 'home',
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'CounterListRoute';
 }
 
 /// generated route for

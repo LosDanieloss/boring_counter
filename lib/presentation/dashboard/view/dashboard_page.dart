@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:boring_counter/routing/app_router.dart';
+import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
       routes: const [
-        HomeRoute(),
+        CounterListRoute(),
         CounterRoute(),
       ],
       builder: (context, child, _) {
@@ -23,8 +23,8 @@ class DashboardPage extends StatelessWidget {
             onTap: tabsRouter.setActiveIndex,
             items: const [
               BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home),
+                label: 'Counters',
+                icon: Icon(Icons.list_alt),
               ),
               BottomNavigationBarItem(
                 label: 'Counter',

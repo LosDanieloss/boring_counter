@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:boring_counter/presentation/counter/counter.dart';
+import 'package:boring_counter/presentation/counter_list/counter_list.dart';
 import 'package:boring_counter/presentation/dashboard/dashboard.dart';
-import 'package:boring_counter/presentation/home/home.dart';
 import 'package:boring_counter/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -20,9 +20,9 @@ part 'app_router.gr.dart';
       path: DashboardPage.path,
       children: [
         AutoRoute(
-          page: HomePage,
+          page: CounterListPage,
           initial: true,
-          path: HomePage.path,
+          path: CounterListPage.path,
         ),
         AutoRoute(
           page: CounterPage,
