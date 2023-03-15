@@ -1,5 +1,5 @@
-import 'package:boring_counter/l10n/l10n.dart';
 import 'package:boring_counter/presentation/counter/counter.dart';
+import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +15,14 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CounterCubit(),
+      create: (_) => CounterCubit(
+        // TODO(daniel): should get it via page param
+        counter: const UiCounter(
+          id: 'id',
+          name: 'name',
+          count: 0,
+        ),
+      ),
       child: const CounterView(),
     );
   }
@@ -28,9 +35,11 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final counterName = context.select(
+      (CounterCubit cubit) => cubit.state.name,
+    );
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(title: Text(counterName)),
       body: _VerticalDragWrapper(
         onIncrement: context.read<CounterCubit>().increment,
         onDecrement: context.read<CounterCubit>().decrement,
@@ -100,7 +109,7 @@ class _CounterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final count = context.select((CounterCubit cubit) => cubit.state);
+    final count = context.select((CounterCubit cubit) => cubit.state.count);
     return Text('$count', style: theme.textTheme.displayLarge);
   }
 }
