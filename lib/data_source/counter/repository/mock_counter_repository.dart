@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 @Injectable(as: CounterRepository)
-class MockCounterRepository extends CounterRepository {
+class MockCounterRepository implements CounterRepository {
   static const _dummyCounter = Counter(
     id: 'counterId',
     name: 'counterName',

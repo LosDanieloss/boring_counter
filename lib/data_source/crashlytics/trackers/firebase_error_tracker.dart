@@ -1,10 +1,10 @@
+import 'package:boring_counter/data_source/crashlytics/error_tracker.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:boring_counter/data_source/crashlytics/error_tracker.dart';
 
 @injectable
-class FirebaseErrorTracker extends ErrorTracker {
+class FirebaseErrorTracker implements ErrorTracker {
   FirebaseErrorTracker({
     required this.crashlytics,
   });

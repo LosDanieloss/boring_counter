@@ -1,9 +1,9 @@
+import 'package:boring_counter/data_source/analytics/analytics_tracker.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:injectable/injectable.dart';
-import 'package:boring_counter/data_source/analytics/analytics_tracker.dart';
 
 @injectable
-class FirebaseAnalyticsTracker extends AnalyticsTracker {
+class FirebaseAnalyticsTracker implements AnalyticsTracker {
   FirebaseAnalyticsTracker({
     required this.analytics,
   });

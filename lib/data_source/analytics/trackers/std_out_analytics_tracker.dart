@@ -1,12 +1,12 @@
 import 'dart:convert';
 
+import 'package:boring_counter/data_source/analytics/analytics_tracker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:boring_counter/data_source/analytics/analytics_tracker.dart';
 
 @injectable
-class StdOutAnalyticsTracker extends AnalyticsTracker {
+class StdOutAnalyticsTracker implements AnalyticsTracker {
   StdOutAnalyticsTracker({
     required this.logger,
   });

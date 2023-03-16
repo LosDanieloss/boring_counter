@@ -1,9 +1,9 @@
-import 'package:injectable/injectable.dart';
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart';
 import 'package:boring_counter/domain/analytics/analytics_repository.dart';
+import 'package:injectable/injectable.dart';
 
 @Injectable(as: AnalyticsRepository)
-class DefaultAnalyticsRepository extends AnalyticsRepository {
+class DefaultAnalyticsRepository implements AnalyticsRepository {
   DefaultAnalyticsRepository({
     required this.trackers,
   });
