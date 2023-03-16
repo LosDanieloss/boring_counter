@@ -1,5 +1,5 @@
+import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/presentation/counter/counter.dart';
-import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,14 +15,8 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CounterCubit(
-        // TODO(daniel): should get it via page param
-        counter: const UiCounter(
-          id: 'id',
-          name: 'name',
-          count: 0,
-        ),
-      ),
+      // TODO(daniel): get counterId from page params
+      create: (_) => getIt.get<CounterCubit>()..watchCounter('counterId'),
       child: const CounterView(),
     );
   }
@@ -35,8 +29,9 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(daniel): get default name from localizations
     final counterName = context.select(
-      (CounterCubit cubit) => cubit.state.name,
+      (CounterCubit cubit) => cubit.state?.name ?? 'Counter',
     );
     return Scaffold(
       appBar: AppBar(title: Text(counterName)),
@@ -109,8 +104,16 @@ class _CounterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final count = context.select((CounterCubit cubit) => cubit.state.count);
-    return Text('$count', style: theme.textTheme.displayLarge);
+    final maybeCounter = context.select((CounterCubit cubit) => cubit.state);
+    final count = maybeCounter?.count;
+    final isVisible = maybeCounter != null;
+    return Visibility(
+      visible: isVisible,
+      child: Text(
+        '$count',
+        style: theme.textTheme.displayLarge,
+      ),
+    );
   }
 }
 

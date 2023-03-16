@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:boring_counter/di/injectable/configure_injectable.dart';
 import 'package:boring_counter/presentation/dashboard/dashboard.dart';
 import 'package:boring_counter/presentation/splash/splash.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

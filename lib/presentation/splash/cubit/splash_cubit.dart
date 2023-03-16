@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:boring_counter/presentation/splash/cubit/splash_state.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class SplashCubit extends Cubit<SplashState> {

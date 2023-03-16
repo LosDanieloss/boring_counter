@@ -381,6 +381,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutterx_live_data:
+    dependency: "direct main"
+    description:
+      name: flutterx_live_data
+      sha256: "0e76b370c27ca6f0d6c6a159444ba9e047a5754e3fd60bb00e636a925b1de0a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.7"
   freezed:
     dependency: "direct dev"
     description:

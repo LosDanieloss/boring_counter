@@ -1,3 +1,4 @@
+import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
 import 'package:boring_counter/presentation/counter_list/view/counter_item_widget.dart';
@@ -12,7 +13,7 @@ class CounterListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (_) => CounterListCubit()..watchCounters(),
+        create: (_) => getIt.get<CounterListCubit>()..watchCounters(),
         child: const _CounterListView(),
       );
 }
@@ -48,7 +49,9 @@ class _CounterListView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             _AddButton(
-              onPressed: () => context.read<CounterListCubit>().addCounter(),
+              onPressed: () => context.read<CounterListCubit>().createCounter(
+                    name: 'TODO(daniel)',
+                  ),
             ),
           ],
         ),

@@ -1,71 +1,84 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
+import 'package:boring_counter/domain/counter/counter.dart';
+import 'package:boring_counter/presentation/counter/mapper/ui_counter_mapper.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
-import 'package:uuid/uuid.dart';
+import 'package:flutterx_live_data/flutterx_live_data.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class CounterListCubit extends Cubit<CounterListState> {
-  CounterListCubit()
-      : super(
+  CounterListCubit({
+    required this.watchCountersUseCase,
+    required this.createCounterUseCase,
+    required this.incrementCounterUseCase,
+    required this.mapper,
+  }) : super(
           CounterListState.loading(
             counters: List.empty(),
           ),
         );
 
-  // FIXME redundant
-  static final StreamController<List<UiCounter>> _controller =
-      StreamController();
+  final WatchCountersUseCase watchCountersUseCase;
 
-  // TODO(daniel): should watch domain model via use case
-  final Stream<List<UiCounter>> _countersStream = _controller.stream;
+  final CreateCounterUseCase createCounterUseCase;
+
+  final IncrementCounterUseCase incrementCounterUseCase;
+
+  final UiCounterMapper mapper;
 
   void watchCounters() {
-    _countersStream.listen((List<UiCounter> counters) {
-      emit(
-        CounterListState.ready(
-          counters: counters,
+    final countersLiveData = watchCountersUseCase.watch()
+      ..addObserverWrapper(
+        EventObserverWrapper(
+          (counters) => _emitCounters(
+            counters: counters,
+          ),
+          Dispatcher.microtask,
         ),
       );
-    });
+    _emitCounters(
+      counters: countersLiveData.value,
+    );
+  }
+
+  void _emitCounters({
+    required List<Counter> counters,
+  }) {
+    final uiCounters = counters
+        .map(
+          (counter) => mapper.toPresentation(
+            counter: counter,
+          ),
+        )
+        .toList();
     emit(
       CounterListState.ready(
-        counters: state.counters,
+        counters: uiCounters,
       ),
     );
   }
 
-  // TODO(daniel): add via use case
-  void addCounter() {
-    final uuid = const Uuid().v4();
-    _controller.add(
-      List.of(state.counters)
-        ..add(
-          UiCounter(
-            id: uuid,
-            name: 'Counter #${state.counters.length}',
-            count: 0,
-          ),
-        ),
-    );
-  }
+  Future<void> createCounter({
+    required String name,
+  }) =>
+      createCounterUseCase.create(
+        name: name,
+      );
 
-  // TODO(daniel): add via use case
-  void incrementCounter({
+  Future<void> incrementCounter({
     required int counterIndex,
-  }) {
+  }) async {
     if (counterIndex >= state.counters.length) {
       return;
     }
-    final counterToUpdate = state.counters[counterIndex];
-    final counters = List.of(state.counters);
-    counters[counterIndex] = counterToUpdate.copyWith(
-      count: counterToUpdate.count + 1,
+    final uiCounterToUpdate = state.counters[counterIndex];
+    final counterToUpdate = mapper.toDomain(
+      uiCounter: uiCounterToUpdate,
     );
-    emit(
-      state.copyWith(
-        counters: counters,
-      ),
+    await incrementCounterUseCase.increment(
+      counter: counterToUpdate,
     );
   }
 }
