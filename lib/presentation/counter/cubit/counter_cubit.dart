@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/mapper/ui_counter_mapper.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
-import 'package:flutterx_live_data/flutterx_live_data.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -23,18 +22,11 @@ class CounterCubit extends Cubit<UiCounter?> {
   final UiCounterMapper mapper;
 
   void watchCounter(CounterId counterId) {
-    final counterLiveData = watchCounterUseCase.watch(counterId: counterId)
-      ..addObserverWrapper(
-        EventObserverWrapper(
+    watchCounterUseCase.watch(counterId: counterId).listen(
           (counter) => _emitCounter(
             counter: counter,
           ),
-          Dispatcher.microtask,
-        ),
-      );
-    _emitCounter(
-      counter: counterLiveData.value,
-    );
+        );
   }
 
   void _emitCounter({

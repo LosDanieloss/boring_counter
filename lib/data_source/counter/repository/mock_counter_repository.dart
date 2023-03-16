@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:boring_counter/domain/counter/model/counter.dart';
 import 'package:boring_counter/domain/counter/repository/counter_repository.dart';
-import 'package:flutterx_live_data/flutterx_live_data.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rxdart/rxdart.dart';
 
 @Injectable(as: CounterRepository)
 class MockCounterRepository extends CounterRepository {
@@ -18,27 +18,29 @@ class MockCounterRepository extends CounterRepository {
     (index) => _dummyCounter,
   );
 
-  static final MutableLiveData<Counter> _counterController = MutableLiveData(
-    value: _dummyCounter,
-  );
+  static final StreamController<Counter> _counterController = BehaviorSubject()
+    ..add(
+      _dummyCounter,
+    );
 
-  final LiveData<Counter> _counterStream = _counterController;
+  final Stream<Counter> _counterStream = _counterController.stream;
 
-  static final MutableLiveData<List<Counter>> _countersController =
-      MutableLiveData(
-    value: _dummyCounterList,
-  );
+  static final StreamController<List<Counter>> _countersController =
+      BehaviorSubject()
+        ..add(
+          _dummyCounterList,
+        );
 
-  final LiveData<List<Counter>> _countersStream = _countersController;
+  final Stream<List<Counter>> _countersStream = _countersController.stream;
 
   @override
   Future<Counter> createCounter({
     required CounterName name,
   }) async {
-    _counterController.postValue(
+    _counterController.add(
       _dummyCounter,
     );
-    _countersController.postValue(
+    _countersController.add(
       _dummyCounterList,
     );
     return _dummyCounter;
@@ -54,21 +56,21 @@ class MockCounterRepository extends CounterRepository {
   Future<Counter> updateCounter({
     required Counter updatedCounter,
   }) async {
-    _counterController.postValue(
+    _counterController.add(
       updatedCounter,
     );
-    _countersController.postValue(
+    _countersController.add(
       _dummyCounterList,
     );
     return updatedCounter;
   }
 
   @override
-  LiveData<Counter> watchCounter({
+  Stream<Counter> watchCounter({
     required CounterId counterId,
   }) =>
       _counterStream;
 
   @override
-  LiveData<List<Counter>> watchCounters() => _countersStream;
+  Stream<List<Counter>> watchCounters() => _countersStream;
 }

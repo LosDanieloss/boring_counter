@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/mapper/ui_counter_mapper.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
-import 'package:flutterx_live_data/flutterx_live_data.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -29,18 +28,11 @@ class CounterListCubit extends Cubit<CounterListState> {
   final UiCounterMapper mapper;
 
   void watchCounters() {
-    final countersLiveData = watchCountersUseCase.watch()
-      ..addObserverWrapper(
-        EventObserverWrapper(
+    watchCountersUseCase.watch().listen(
           (counters) => _emitCounters(
             counters: counters,
           ),
-          Dispatcher.microtask,
-        ),
-      );
-    _emitCounters(
-      counters: countersLiveData.value,
-    );
+        );
   }
 
   void _emitCounters({

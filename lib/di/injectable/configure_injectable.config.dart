@@ -10,7 +10,7 @@ import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
 import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
 import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
-    as _i30;
+    as _i31;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
     as _i33;
 import 'package:boring_counter/data_source/analytics/trackers/firebase_analytics_tracker.dart'
@@ -22,7 +22,7 @@ import 'package:boring_counter/data_source/counter/repository/mock_counter_repos
 import 'package:boring_counter/data_source/crashlytics/default_crashlytics_repository.dart'
     as _i35;
 import 'package:boring_counter/data_source/crashlytics/error_tracker.dart'
-    as _i31;
+    as _i30;
 import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_tracker.dart'
     as _i16;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
@@ -152,22 +152,22 @@ Future<_i1.GetIt> init(
         incrementCounterUseCase: gh<_i11.IncrementCounterUseCase>(),
         mapper: gh<_i24.UiCounterMapper>(),
       ));
-  gh.factory<List<_i30.AnalyticsTracker>>(
+  gh.factory<List<_i30.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
+        gh<_i3.AppConfig>(),
+        gh<_i16.FirebaseErrorTracker>(),
+        gh<_i23.StdOutErrorTracker>(),
+      ));
+  gh.factory<List<_i31.AnalyticsTracker>>(
       () => analyticsModule.getAnalyticsTrackers(
             gh<_i3.AppConfig>(),
             gh<_i14.FirebaseAnalyticsTracker>(),
             gh<_i22.StdOutAnalyticsTracker>(),
           ));
-  gh.factory<List<_i31.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
-        gh<_i3.AppConfig>(),
-        gh<_i16.FirebaseErrorTracker>(),
-        gh<_i23.StdOutErrorTracker>(),
-      ));
   gh.factory<_i32.AnalyticsRepository>(() => _i33.DefaultAnalyticsRepository(
-      trackers: gh<List<_i30.AnalyticsTracker>>()));
+      trackers: gh<List<_i31.AnalyticsTracker>>()));
   gh.factory<_i34.CrashlyticsRepository>(() =>
       _i35.DefaultCrashlyticsRepository(
-          trackers: gh<List<_i31.ErrorTracker>>()));
+          trackers: gh<List<_i30.ErrorTracker>>()));
   gh.factory<_i36.ErrorTrackerUseCase>(() => _i36.ErrorTrackerUseCase(
       crashlyticsRepository: gh<_i34.CrashlyticsRepository>()));
   gh.factory<_i37.EventTrackerUseCase>(() => _i37.EventTrackerUseCase(
