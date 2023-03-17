@@ -30,16 +30,19 @@ class CounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO(daniel): get default name from localizations
-    final counterName = context.select(
-      (CounterCubit cubit) => cubit.state?.name ?? 'Counter',
+    final maybeState = context.select(
+      (CounterCubit cubit) => cubit.state,
     );
+    final counterName = maybeState?.name ?? 'Counter';
     return Scaffold(
       appBar: AppBar(title: Text(counterName)),
       body: _VerticalDragWrapper(
         onIncrement: context.read<CounterCubit>().increment,
         onDecrement: context.read<CounterCubit>().decrement,
-        child: const Center(
-          child: _CounterText(),
+        child: Center(
+          child: (maybeState != null)
+              ? const _CounterText()
+              : const _MissingCounter(),
         ),
       ),
       floatingActionButton: Column(
@@ -149,4 +152,25 @@ class _DecrementButton extends StatelessWidget {
           color: Colors.white,
         ),
       );
+}
+
+class _MissingCounter extends StatelessWidget {
+  const _MissingCounter();
+
+  // TODO(daniel): Localize
+  @override
+  Widget build(BuildContext context) {
+    final baseTextStyle =
+        Theme.of(context).textTheme.bodyLarge ?? const TextStyle();
+    return Center(
+      child: Text(
+        "You don't have any counters.\n"
+        'Feel free to add one in the counters tab.',
+        style: baseTextStyle.copyWith(
+          color: Colors.blueGrey,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
 }

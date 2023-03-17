@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:boring_counter/domain/counter/model/counter.dart';
 import 'package:boring_counter/domain/counter/repository/counter_repository.dart';
-import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-@Injectable(as: CounterRepository)
 class MockCounterRepository implements CounterRepository {
   static const _dummyCounter = Counter(
     id: 'counterId',

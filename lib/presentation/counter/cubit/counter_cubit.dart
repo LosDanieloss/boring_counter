@@ -22,11 +22,15 @@ class CounterCubit extends Cubit<UiCounter?> {
   final UiCounterMapper mapper;
 
   void watchCounter(CounterId counterId) {
-    watchCounterUseCase.watch(counterId: counterId).listen(
-          (counter) => _emitCounter(
-            counter: counter,
-          ),
-        );
+    try {
+      watchCounterUseCase.watch(counterId: counterId).listen(
+            (counter) => _emitCounter(
+              counter: counter,
+            ),
+          );
+    } catch (e) {
+      emit(null);
+    }
   }
 
   void _emitCounter({

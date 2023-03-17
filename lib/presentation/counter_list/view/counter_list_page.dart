@@ -22,11 +22,11 @@ class _CounterListView extends StatelessWidget {
   const _CounterListView();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: BlocBuilder(
-          bloc: context.read<CounterListCubit>(),
-          builder: (BuildContext context, CounterListState state) {
-            return _MultipleTapGestureWrapper(
+  Widget build(BuildContext context) => BlocBuilder(
+        bloc: context.read<CounterListCubit>(),
+        builder: (BuildContext context, CounterListState state) {
+          return Scaffold(
+            body: _MultipleTapGestureWrapper(
               state: state,
               child: state.map(
                 loading: (loadingState) => Stack(
@@ -41,20 +41,21 @@ class _CounterListView extends StatelessWidget {
                   counters: readyState.counters,
                 ),
               ),
-            );
-          },
-        ),
-        floatingActionButton: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            _AddButton(
-              onPressed: () => context.read<CounterListCubit>().createCounter(
-                    name: 'TODO(daniel)',
-                  ),
             ),
-          ],
-        ),
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                _AddButton(
+                  onPressed: () =>
+                      context.read<CounterListCubit>().createCounter(
+                            name: 'Counter #${state.counters.length}',
+                          ),
+                ),
+              ],
+            ),
+          );
+        },
       );
 }
 
