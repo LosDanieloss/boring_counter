@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:boring_counter/domain/counter/counter.dart';
-import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
 
-@Singleton(as: CounterRepository)
 class MemoryCounterRepository implements CounterRepository {
   List<Counter> _counters = List.empty();
 
