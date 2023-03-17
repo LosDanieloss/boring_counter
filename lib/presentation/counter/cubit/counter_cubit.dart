@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/mapper/ui_counter_mapper.dart';
@@ -21,9 +23,14 @@ class CounterCubit extends Cubit<UiCounter?> {
 
   final UiCounterMapper mapper;
 
-  void watchCounter(CounterId counterId) {
+  StreamSubscription<Counter>? _subscription;
+
+  void watchCounter(CounterId? counterId) {
+    if (counterId == null) {
+      return;
+    }
     try {
-      watchCounterUseCase.watch(counterId: counterId).listen(
+      _subscription = watchCounterUseCase.watch(counterId: counterId).listen(
             (counter) => _emitCounter(
               counter: counter,
             ),
@@ -64,5 +71,11 @@ class CounterCubit extends Cubit<UiCounter?> {
         counter: maybeCounter,
       );
     }
+  }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
   }
 }

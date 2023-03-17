@@ -36,9 +36,15 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CounterRoute.name: (routeData) {
+      final args = routeData.argsAs<CounterRouteArgs>(
+          orElse: () => const CounterRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const CounterPage(),
+        child: CounterPage(
+          counterId: args.counterId,
+          key: args.key,
+        ),
+        maintainState: false,
       );
     },
   };
@@ -114,12 +120,34 @@ class CounterListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CounterPage]
-class CounterRoute extends PageRouteInfo<void> {
-  const CounterRoute()
-      : super(
+class CounterRoute extends PageRouteInfo<CounterRouteArgs> {
+  CounterRoute({
+    String? counterId,
+    Key? key,
+  }) : super(
           CounterRoute.name,
           path: 'counter',
+          args: CounterRouteArgs(
+            counterId: counterId,
+            key: key,
+          ),
         );
 
   static const String name = 'CounterRoute';
+}
+
+class CounterRouteArgs {
+  const CounterRouteArgs({
+    this.counterId,
+    this.key,
+  });
+
+  final String? counterId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CounterRouteArgs{counterId: $counterId, key: $key}';
+  }
 }

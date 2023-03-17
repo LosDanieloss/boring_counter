@@ -10,8 +10,8 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
-      routes: const [
-        CounterListRoute(),
+      routes: [
+        const CounterListRoute(),
         CounterRoute(),
       ],
       builder: (context, child, _) {

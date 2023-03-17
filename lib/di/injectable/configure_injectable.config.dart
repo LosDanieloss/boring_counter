@@ -6,11 +6,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i5;
-import 'package:boring_counter/config/app/prod_app_config.dart' as _i6;
-import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i4;
+import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/staging_app_config.dart' as _i6;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
-    as _i29;
+    as _i30;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
     as _i32;
 import 'package:boring_counter/data_source/analytics/trackers/firebase_analytics_tracker.dart'
@@ -22,7 +22,7 @@ import 'package:boring_counter/data_source/counter/repository/memory_counter_rep
 import 'package:boring_counter/data_source/crashlytics/default_crashlytics_repository.dart'
     as _i34;
 import 'package:boring_counter/data_source/crashlytics/error_tracker.dart'
-    as _i30;
+    as _i29;
 import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_tracker.dart'
     as _i15;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
@@ -92,16 +92,16 @@ Future<_i1.GetIt> init(
   final crashlyticsModule = _$CrashlyticsModule();
   final genericModule = _$GenericModule();
   gh.factory<_i3.AppConfig>(
-    () => _i4.StagingAppConfig(),
-    registerFor: {_staging},
-  );
-  gh.factory<_i3.AppConfig>(
-    () => _i5.DevelopmentAppConfig(),
+    () => _i4.DevelopmentAppConfig(),
     registerFor: {_development},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i6.ProductionAppConfig(),
+    () => _i5.ProductionAppConfig(),
     registerFor: {_production},
+  );
+  gh.factory<_i3.AppConfig>(
+    () => _i6.StagingAppConfig(),
+    registerFor: {_staging},
   );
   gh.singleton<_i7.AppRouter>(_i7.AppRouter());
   gh.singleton<_i8.CounterRepository>(_i9.MemoryCounterRepository());
@@ -150,22 +150,22 @@ Future<_i1.GetIt> init(
         incrementCounterUseCase: gh<_i8.IncrementCounterUseCase>(),
         mapper: gh<_i23.UiCounterMapper>(),
       ));
-  gh.factory<List<_i29.AnalyticsTracker>>(
+  gh.factory<List<_i29.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
+        gh<_i3.AppConfig>(),
+        gh<_i15.FirebaseErrorTracker>(),
+        gh<_i22.StdOutErrorTracker>(),
+      ));
+  gh.factory<List<_i30.AnalyticsTracker>>(
       () => analyticsModule.getAnalyticsTrackers(
             gh<_i3.AppConfig>(),
             gh<_i13.FirebaseAnalyticsTracker>(),
             gh<_i21.StdOutAnalyticsTracker>(),
           ));
-  gh.factory<List<_i30.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
-        gh<_i3.AppConfig>(),
-        gh<_i15.FirebaseErrorTracker>(),
-        gh<_i22.StdOutErrorTracker>(),
-      ));
   gh.factory<_i31.AnalyticsRepository>(() => _i32.DefaultAnalyticsRepository(
-      trackers: gh<List<_i29.AnalyticsTracker>>()));
+      trackers: gh<List<_i30.AnalyticsTracker>>()));
   gh.factory<_i33.CrashlyticsRepository>(() =>
       _i34.DefaultCrashlyticsRepository(
-          trackers: gh<List<_i30.ErrorTracker>>()));
+          trackers: gh<List<_i29.ErrorTracker>>()));
   gh.factory<_i35.ErrorTrackerUseCase>(() => _i35.ErrorTrackerUseCase(
       crashlyticsRepository: gh<_i33.CrashlyticsRepository>()));
   gh.factory<_i36.EventTrackerUseCase>(() => _i36.EventTrackerUseCase(

@@ -27,6 +27,7 @@ part 'app_router.gr.dart';
         AutoRoute(
           page: CounterPage,
           path: CounterPage.path,
+          maintainState: false,
         ),
       ],
     ),

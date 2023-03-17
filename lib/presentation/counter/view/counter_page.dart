@@ -1,4 +1,5 @@
 import 'package:boring_counter/di/injectable/all.dart';
+import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/counter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,19 @@ typedef VerticalDragGestureRecognizerFactory
     = GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>;
 
 class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+  const CounterPage({
+    this.counterId,
+    super.key,
+  });
 
   static const path = 'counter';
+
+  final CounterId? counterId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      // TODO(daniel): get counterId from page params
-      create: (_) => getIt.get<CounterCubit>()..watchCounter('counterId'),
+      create: (_) => getIt.get<CounterCubit>()..watchCounter(counterId),
       child: const CounterView(),
     );
   }
