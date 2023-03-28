@@ -27,8 +27,10 @@ class CounterListCubit extends Cubit<CounterListState> {
 
   final UiCounterMapper mapper;
 
+  StreamSubscription<List<Counter>>? _maybeSubscription;
+
   void watchCounters() {
-    watchCountersUseCase.watch().listen(
+    _maybeSubscription = watchCountersUseCase.watch().listen(
           (counters) => _emitCounters(
             counters: counters,
           ),
@@ -38,6 +40,9 @@ class CounterListCubit extends Cubit<CounterListState> {
   void _emitCounters({
     required List<Counter> counters,
   }) {
+    if (isClosed) {
+      return;
+    }
     final uiCounters = counters
         .map(
           (counter) => mapper.toPresentation(
@@ -72,5 +77,11 @@ class CounterListCubit extends Cubit<CounterListState> {
     await incrementCounterUseCase.increment(
       counter: counterToUpdate,
     );
+  }
+
+  @override
+  Future<void> close() {
+    _maybeSubscription?.cancel();
+    return super.close();
   }
 }

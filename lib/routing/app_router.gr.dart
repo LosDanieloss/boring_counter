@@ -1,96 +1,79 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'app_router.dart';
 
-class _$AppRouter extends RootStackRouter {
+abstract class _$AppRouter extends RootStackRouter {
   _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
       );
     },
-    DashboardRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const DashboardPage(),
-      );
-    },
     CounterListRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CounterListPage(),
       );
     },
+    DashboardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DashboardPage(),
+      );
+    },
     CounterRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CounterRouteArgs>(
-          orElse: () => const CounterRouteArgs());
-      return MaterialPageX<dynamic>(
+          orElse: () =>
+              CounterRouteArgs(counterId: pathParams.optString('counterId')));
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: CounterPage(
           counterId: args.counterId,
           key: args.key,
         ),
-        maintainState: false,
       );
     },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          SplashRoute.name,
-          path: '/',
-        ),
-        RouteConfig(
-          DashboardRoute.name,
-          path: '/dashboard',
-          children: [
-            RouteConfig(
-              '#redirect',
-              path: '',
-              parent: DashboardRoute.name,
-              redirectTo: 'home',
-              fullMatch: true,
-            ),
-            RouteConfig(
-              CounterListRoute.name,
-              path: 'home',
-              parent: DashboardRoute.name,
-            ),
-            RouteConfig(
-              CounterRoute.name,
-              path: 'counter',
-              parent: DashboardRoute.name,
-            ),
-          ],
-        ),
-      ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute()
+  const SplashRoute({List<PageRouteInfo>? children})
       : super(
           SplashRoute.name,
-          path: '/',
+          initialChildren: children,
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CounterListPage]
+class CounterListRoute extends PageRouteInfo<void> {
+  const CounterListRoute({List<PageRouteInfo>? children})
+      : super(
+          CounterListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CounterListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -99,23 +82,12 @@ class DashboardRoute extends PageRouteInfo<void> {
   const DashboardRoute({List<PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
-          path: '/dashboard',
           initialChildren: children,
         );
 
   static const String name = 'DashboardRoute';
-}
 
-/// generated route for
-/// [CounterListPage]
-class CounterListRoute extends PageRouteInfo<void> {
-  const CounterListRoute()
-      : super(
-          CounterListRoute.name,
-          path: 'home',
-        );
-
-  static const String name = 'CounterListRoute';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -124,16 +96,21 @@ class CounterRoute extends PageRouteInfo<CounterRouteArgs> {
   CounterRoute({
     String? counterId,
     Key? key,
+    List<PageRouteInfo>? children,
   }) : super(
           CounterRoute.name,
-          path: 'counter',
           args: CounterRouteArgs(
             counterId: counterId,
             key: key,
           ),
+          rawPathParams: {'counterId': counterId},
+          initialChildren: children,
         );
 
   static const String name = 'CounterRoute';
+
+  static const PageInfo<CounterRouteArgs> page =
+      PageInfo<CounterRouteArgs>(name);
 }
 
 class CounterRouteArgs {

@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
@@ -6,10 +7,11 @@ import 'package:boring_counter/presentation/counter_list/view/multiple_tap_gestu
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class CounterListPage extends StatelessWidget {
   const CounterListPage({super.key});
 
-  static const path = 'home';
+  static const path = 'counters';
 
   @override
   Widget build(BuildContext context) => BlocProvider(

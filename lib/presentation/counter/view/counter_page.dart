@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/counter.dart';
@@ -8,13 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 typedef VerticalDragGestureRecognizerFactory
     = GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>;
 
+@RoutePage()
 class CounterPage extends StatelessWidget {
   const CounterPage({
-    this.counterId,
+    @pathParam this.counterId,
     super.key,
   });
 
-  static const path = 'counter';
+  static const path = 'counter/:counterId';
 
   final CounterId? counterId;
 

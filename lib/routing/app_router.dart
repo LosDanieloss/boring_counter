@@ -8,30 +8,41 @@ import 'package:injectable/injectable.dart';
 
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+@Singleton()
+class AppRouter extends _$AppRouter {
+  @override
+  final List<AutoRoute> routes = [
     AutoRoute(
-      page: SplashPage,
-      initial: true,
+      page: SplashRoute.page,
+      path: '/',
     ),
     AutoRoute(
-      page: DashboardPage,
+      page: DashboardRoute.page,
       path: DashboardPage.path,
       children: [
         AutoRoute(
-          page: CounterListPage,
-          initial: true,
+          page: CounterListRoute.page,
           path: CounterListPage.path,
         ),
-        AutoRoute(
-          page: CounterPage,
+        CustomRoute(
+          page: CounterRoute.page,
           path: CounterPage.path,
           maintainState: false,
+          usesPathAsKey: true,
+          fullMatch: true,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return TransitionsBuilders.noTransition(
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            );
+          },
         ),
       ],
     ),
-  ],
-)
-@Singleton()
-class AppRouter extends _$AppRouter {}
+  ];
+}
