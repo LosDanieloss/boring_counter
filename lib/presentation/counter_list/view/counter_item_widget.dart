@@ -27,7 +27,7 @@ class CounterItemWidget extends StatelessWidget {
         );
         switch (deviceType) {
           case DeviceScreenType.mobile:
-            AutoTabsRouter.of(context).navigate(
+            context.tabsRouter.navigate(
               route,
             );
             break;

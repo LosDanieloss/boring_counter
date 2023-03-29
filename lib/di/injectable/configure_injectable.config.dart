@@ -10,7 +10,7 @@ import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
 import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
 import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
-    as _i25;
+    as _i26;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
     as _i30;
 import 'package:boring_counter/data_source/analytics/trackers/firebase_analytics_tracker.dart'
@@ -24,7 +24,7 @@ import 'package:boring_counter/data_source/counter/repository/prefs_counter_repo
 import 'package:boring_counter/data_source/crashlytics/default_crashlytics_repository.dart'
     as _i34;
 import 'package:boring_counter/data_source/crashlytics/error_tracker.dart'
-    as _i26;
+    as _i25;
 import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_tracker.dart'
     as _i12;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
@@ -140,23 +140,23 @@ Future<_i1.GetIt> init(
       _i23.DecrementCounterUseCase(repository: gh<_i20.CounterRepository>()));
   gh.factory<_i24.IncrementCounterUseCase>(() =>
       _i24.IncrementCounterUseCase(repository: gh<_i20.CounterRepository>()));
-  gh.factory<List<_i25.AnalyticsTracker>>(
+  gh.factory<List<_i25.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
+        gh<_i3.AppConfig>(),
+        gh<_i12.FirebaseErrorTracker>(),
+        gh<_i17.StdOutErrorTracker>(),
+      ));
+  gh.factory<List<_i26.AnalyticsTracker>>(
       () => analyticsModule.getAnalyticsTrackers(
             gh<_i3.AppConfig>(),
             gh<_i10.FirebaseAnalyticsTracker>(),
             gh<_i16.StdOutAnalyticsTracker>(),
           ));
-  gh.factory<List<_i26.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
-        gh<_i3.AppConfig>(),
-        gh<_i12.FirebaseErrorTracker>(),
-        gh<_i17.StdOutErrorTracker>(),
-      ));
   gh.factory<_i27.WatchCounterUseCase>(
       () => _i27.WatchCounterUseCase(repository: gh<_i20.CounterRepository>()));
   gh.factory<_i28.WatchCountersUseCase>(() =>
       _i28.WatchCountersUseCase(repository: gh<_i20.CounterRepository>()));
   gh.factory<_i29.AnalyticsRepository>(() => _i30.DefaultAnalyticsRepository(
-      trackers: gh<List<_i25.AnalyticsTracker>>()));
+      trackers: gh<List<_i26.AnalyticsTracker>>()));
   gh.factory<_i31.CounterCubit>(() => _i31.CounterCubit(
         watchCounterUseCase: gh<_i20.WatchCounterUseCase>(),
         incrementCounterUseCase: gh<_i20.IncrementCounterUseCase>(),
@@ -171,7 +171,7 @@ Future<_i1.GetIt> init(
       ));
   gh.factory<_i33.CrashlyticsRepository>(() =>
       _i34.DefaultCrashlyticsRepository(
-          trackers: gh<List<_i26.ErrorTracker>>()));
+          trackers: gh<List<_i25.ErrorTracker>>()));
   gh.factory<_i35.ErrorTrackerUseCase>(() => _i35.ErrorTrackerUseCase(
       crashlyticsRepository: gh<_i33.CrashlyticsRepository>()));
   gh.factory<_i36.EventTrackerUseCase>(() => _i36.EventTrackerUseCase(

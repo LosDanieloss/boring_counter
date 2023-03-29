@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:boring_counter/presentation/counter_list/counter_list.dart';
 import 'package:boring_counter/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -23,19 +22,7 @@ class _WidePage extends StatelessWidget {
   const _WidePage();
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: const [
-          Flexible(
-            flex: 44,
-            child: CounterListPage(),
-          ),
-          VerticalDivider(),
-          Flexible(
-            flex: 55,
-            child: AutoRouter(),
-          )
-        ],
-      );
+  Widget build(BuildContext context) => const AutoRouter();
 }
 
 class _NarrowPage extends StatelessWidget {

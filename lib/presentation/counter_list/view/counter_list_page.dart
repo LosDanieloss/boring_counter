@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
@@ -6,6 +7,7 @@ import 'package:boring_counter/presentation/counter_list/view/counter_item_widge
 import 'package:boring_counter/presentation/counter_list/view/multiple_tap_gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 @RoutePage()
 class CounterListPage extends StatelessWidget {
@@ -16,9 +18,41 @@ class CounterListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => getIt.get<CounterListCubit>()..watchCounters(),
-        child: const _CounterListView(),
+        child: ScreenTypeLayout.builder(
+          desktop: (_) => const _WidePage(),
+          tablet: (_) => const _WidePage(),
+          mobile: (_) => const _NarrowPage(),
+        ),
       );
 }
+
+class _WidePage extends StatelessWidget {
+  const _WidePage();
+
+  @override
+  Widget build(BuildContext context) => Row(
+    children: const [
+      Flexible(
+        flex: 44,
+        child: _CounterListView(),
+      ),
+      VerticalDivider(),
+      Flexible(
+        flex: 55,
+        child: AutoRouter(),
+      )
+    ],
+  );
+}
+
+
+class _NarrowPage extends StatelessWidget {
+  const _NarrowPage();
+
+  @override
+  Widget build(BuildContext context) => const _CounterListView();
+}
+
 
 class _CounterListView extends StatelessWidget {
   const _CounterListView();

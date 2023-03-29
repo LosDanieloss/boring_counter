@@ -3,6 +3,7 @@ import 'package:boring_counter/l10n/l10n.dart';
 import 'package:boring_counter/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -10,7 +11,11 @@ class App extends StatelessWidget {
   final _appRouter = getIt.get<AppRouter>();
 
   @override
-  Widget build(BuildContext context) => MaterialApp.router(
+  Widget build(BuildContext context) {
+    ResponsiveSizingConfig.instance.setCustomBreakpoints(
+      const ScreenBreakpoints(desktop: 950, tablet: 720, watch: 300),
+    );
+    return MaterialApp.router(
         theme: ThemeData(
           appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
           colorScheme: ColorScheme.fromSwatch(
@@ -25,4 +30,5 @@ class App extends StatelessWidget {
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       );
+  }
 }

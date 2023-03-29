@@ -23,24 +23,34 @@ class AppRouter extends _$AppRouter {
       page: DashboardRoute.page,
       path: DashboardPage.path,
       children: [
+        RedirectRoute(
+          path: '',
+          redirectTo: CounterListPage.path,
+        ),
         AutoRoute(
           page: CounterListRoute.page,
           path: CounterListPage.path,
+          children: [
+            CustomRoute(
+              page: CounterRoute.page,
+              path: CounterPage.path,
+              usesPathAsKey: true,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return TransitionsBuilders.noTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+            ),
+          ],
         ),
-        CustomRoute(
+        AutoRoute(
           page: CounterRoute.page,
           path: CounterPage.path,
           maintainState: false,
-          usesPathAsKey: true,
-          fullMatch: true,
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return TransitionsBuilders.noTransition(
-              context,
-              animation,
-              secondaryAnimation,
-              child,
-            );
-          },
         ),
       ],
     ),
