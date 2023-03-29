@@ -12,7 +12,6 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ScreenTypeLayout.builder(
         desktop: (_) => const _WidePage(),
-        // TODO(daniel): check which one will be rendered if this constraint missing
         tablet: (_) => const _WidePage(),
         mobile: (_) => const _NarrowPage(),
       );

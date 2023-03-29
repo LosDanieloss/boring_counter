@@ -6,8 +6,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
-import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/prod_app_config.dart' as _i6;
 import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
     as _i26;
@@ -95,12 +95,12 @@ Future<_i1.GetIt> init(
     registerFor: {_staging},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i5.ProductionAppConfig(),
-    registerFor: {_production},
+    () => _i5.DevelopmentAppConfig(),
+    registerFor: {_development},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i6.DevelopmentAppConfig(),
-    registerFor: {_development},
+    () => _i6.ProductionAppConfig(),
+    registerFor: {_production},
   );
   gh.singleton<_i7.AppRouter>(_i7.AppRouter());
   gh.factory<_i8.DataSourceCounterMapper>(() => _i8.DataSourceCounterMapper());

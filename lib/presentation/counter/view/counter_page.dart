@@ -171,8 +171,8 @@ class _MissingCounter extends StatelessWidget {
         Theme.of(context).textTheme.bodyLarge ?? const TextStyle();
     return Center(
       child: Text(
-        "You don't have any counters.\n"
-        'Feel free to add one in the counters tab.',
+        "You don't any counter selected.\n"
+        'Please select on on the list.',
         style: baseTextStyle.copyWith(
           color: Colors.blueGrey,
         ),

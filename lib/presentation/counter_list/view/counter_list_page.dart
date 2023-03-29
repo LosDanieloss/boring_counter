@@ -31,20 +31,20 @@ class _WidePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-    children: const [
-      Flexible(
-        flex: 44,
-        child: _CounterListView(),
-      ),
-      VerticalDivider(),
-      Flexible(
-        flex: 55,
-        child: AutoRouter(),
-      )
-    ],
-  );
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 380,
+            ),
+            child: const _CounterListView(),
+          ),
+          const VerticalDivider(),
+          const Flexible(
+            child: AutoRouter(),
+          )
+        ],
+      );
 }
-
 
 class _NarrowPage extends StatelessWidget {
   const _NarrowPage();
@@ -52,7 +52,6 @@ class _NarrowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const _CounterListView();
 }
-
 
 class _CounterListView extends StatelessWidget {
   const _CounterListView();

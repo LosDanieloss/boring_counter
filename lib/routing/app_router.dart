@@ -31,6 +31,10 @@ class AppRouter extends _$AppRouter {
           page: CounterListRoute.page,
           path: CounterListPage.path,
           children: [
+            RedirectRoute(
+              path: '',
+              redirectTo: CounterPage.path,
+            ),
             CustomRoute(
               page: CounterRoute.page,
               path: CounterPage.path,
