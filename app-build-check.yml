@@ -1,0 +1,33 @@
+jobs:
+  - job: App_Build_Check
+    pool:
+      vmImage: 'macOS-latest'
+    variables:
+      - name: flavor
+        value: 'development'
+    steps:
+    
+      - task: JavaToolInstaller@0
+        displayName: 'Install Java v11'
+        inputs:
+          versionSpec: '11'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
+
+      - task: FlutterInstall@0
+        displayName: 'Install Flutter'
+        inputs:
+          mode: 'auto'
+          channel: 'stable'
+          version: 'custom'
+          customVersion: '3.7.7'
+
+      - task: FlutterBuild@0
+        displayName: 'Build Android & iOS Apps'
+        inputs:
+          target: 'mobile'
+          projectDirectory: '.'
+          entryPoint: "lib/main_$(flavor).dart"
+          buildFlavour: $(flavor)
+          debugMode: true
+          iosCodesign: false
