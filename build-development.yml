@@ -1,30 +1,56 @@
+
+trigger:
+ branches:
+   include:
+     - main
+
 jobs:
-  - job: Mobile
+  - job: Build_And_Deploy_Mobile_Development
     pool:
       vmImage: 'macOS-latest'
+    variables:
+      - group: boring-counter-firebase
+      - name: flavor
+        value: "development"
+      - name: androidDir
+        value: $(Build.SourcesDirectory)/build/app/outputs/flutter-apk
+      - name: apkFile
+        value: $(androidDir)/app-$(flavor)-debug.apk
     steps:
     
       - task: JavaToolInstaller@0
+        displayName: 'Install Java v11'
         inputs:
           versionSpec: '11'
           jdkArchitectureOption: 'x64'
           jdkSourceOption: 'PreInstalled'
 
       - task: FlutterInstall@0
+        displayName: 'Install Flutter'
         inputs:
           mode: 'auto'
           channel: 'stable'
-          version: 'latest'
+          version: 'custom'
+          customVersion: '3.7.7'
 
       - task: FlutterBuild@0
+        displayName: 'Build Android apk'
         inputs:
           target: 'apk'
           projectDirectory: '.'
-          entryPoint: "lib/main_development.dart"
-          buildFlavour: "development"
-          iosCodesign: false
+          entryPoint: "lib/main_$(flavor).dart"
+          buildFlavour: $(flavor)
           debugMode: true
-
-      # - task: FlutterTest@0
-        # inputs:
-          # projectDirectory: '.'
+        
+      - task: Bash@3
+        displayName: 'Deploy Android apk to Firebase Distribution'
+        inputs:
+          targetType: 'inline'
+          script: |
+            npm i -g firebase-tools
+            ls -la $(androidDir)
+            firebase appdistribution:distribute "$(apkFile)" \
+              --app "$(firebase_android_dev_project)" \
+              --release-notes "This build was prepared automatically. For see what's new please refere to ticket board." \
+              --groups "beta-testers" \
+              --token $(FIREBASE_TOKEN)
