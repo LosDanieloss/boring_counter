@@ -35,5 +35,5 @@ jobs:
           targetType: 'inline'
           script: |
             npm i -g firebase-tools
-            firebase deploy $(Build.SourceVersion) \
+            firebase deploy \
               --token $(FIREBASE_TOKEN)
