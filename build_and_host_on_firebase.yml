@@ -1,0 +1,38 @@
+trigger:
+ branches:
+   include:
+     - main
+
+jobs:
+  - job: Build_And_Host_On_Firebase
+    pool:
+      vmImage: 'macOS-latest'
+    variables:
+      - group: boring-counter-firebase
+      - name: flavor
+        value: 'development'
+    steps:
+
+      - task: FlutterInstall@0
+        displayName: 'Install Flutter'
+        inputs:
+          mode: 'auto'
+          channel: 'stable'
+          version: 'custom'
+          customVersion: '3.7.7'
+
+      - task: Bash@3
+        displayName: 'Build Web App'
+        inputs:
+          targetType: 'inline'
+          script: |
+            $(FLUTTERTOOLPATH)/flutter build web -t lib/main_$(flavor).dart
+
+      - task: Bash@3
+        displayName: 'Deploy preview'
+        inputs:
+          targetType: 'inline'
+          script: |
+            npm i -g firebase-tools
+            firebase deploy $(Build.SourceVersion) \
+              --token $(FIREBASE_TOKEN)
