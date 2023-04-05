@@ -3,6 +3,7 @@ jobs:
     pool:
       vmImage: 'macOS-latest'
     variables:
+      - group: boring-counter-general
       - name: flavor
         value: 'development'
     steps:
@@ -18,9 +19,9 @@ jobs:
         displayName: 'Install Flutter'
         inputs:
           mode: 'auto'
-          channel: 'stable'
+          channel: '$(flutter_channel)'
           version: 'custom'
-          customVersion: '3.7.7'
+          customVersion: '$(flutter_version)'
 
       - task: FlutterBuild@0
         displayName: 'Build Android & iOS Apps'

@@ -8,6 +8,7 @@ jobs:
     pool:
       vmImage: 'macOS-latest'
     variables:
+      - group: boring-counter-general
       - group: boring-counter-firebase
       - name: flavor
         value: 'development'
@@ -17,9 +18,9 @@ jobs:
         displayName: 'Install Flutter'
         inputs:
           mode: 'auto'
-          channel: 'stable'
+          channel: '$(flutter_channel)'
           version: 'custom'
-          customVersion: '3.7.7'
+          customVersion: '$(flutter_version)'
 
       - task: Bash@3
         displayName: 'Build Web App'
