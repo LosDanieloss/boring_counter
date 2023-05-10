@@ -2,7 +2,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ui_counter.freezed.dart';
 
-@freezed
+@Freezed(
+  equal: true,
+)
 class UiCounter with _$UiCounter {
   const factory UiCounter({
     required String id,

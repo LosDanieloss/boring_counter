@@ -43,24 +43,24 @@ class CounterView extends StatelessWidget {
     final counterName = maybeState?.name ?? 'Counter';
     return Scaffold(
       appBar: AppBar(title: Text(counterName)),
-      body: _VerticalDragWrapper(
+      body: VerticalDragWrapper(
         onIncrement: context.read<CounterCubit>().increment,
         onDecrement: context.read<CounterCubit>().decrement,
         child: Center(
           child: (maybeState != null)
-              ? const _CounterText()
-              : const _MissingCounter(),
+              ? const CounterText()
+              : const MissingCounter(),
         ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          _IncrementButton(
+          IncrementButton(
             onPressed: () => context.read<CounterCubit>().increment(),
           ),
           const SizedBox(height: _buttonsDistance),
-          _DecrementButton(
+          DecrementButton(
             onPressed: () => context.read<CounterCubit>().decrement(),
           ),
         ],
@@ -69,11 +69,12 @@ class CounterView extends StatelessWidget {
   }
 }
 
-class _VerticalDragWrapper extends StatelessWidget {
-  const _VerticalDragWrapper({
+class VerticalDragWrapper extends StatelessWidget {
+  const VerticalDragWrapper({
     required this.child,
     this.onIncrement,
     this.onDecrement,
+    super.key,
   });
 
   static const _defaultVelocity = 0;
@@ -108,8 +109,8 @@ class _VerticalDragWrapper extends StatelessWidget {
       );
 }
 
-class _CounterText extends StatelessWidget {
-  const _CounterText();
+class CounterText extends StatelessWidget {
+  const CounterText({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +128,10 @@ class _CounterText extends StatelessWidget {
   }
 }
 
-class _IncrementButton extends StatelessWidget {
-  const _IncrementButton({
+class IncrementButton extends StatelessWidget {
+  const IncrementButton({
     required this.onPressed,
+    super.key,
   });
 
   final VoidCallback? onPressed;
@@ -144,9 +146,10 @@ class _IncrementButton extends StatelessWidget {
       );
 }
 
-class _DecrementButton extends StatelessWidget {
-  const _DecrementButton({
+class DecrementButton extends StatelessWidget {
+  const DecrementButton({
     required this.onPressed,
+    super.key,
   });
 
   final VoidCallback? onPressed;
@@ -161,8 +164,8 @@ class _DecrementButton extends StatelessWidget {
       );
 }
 
-class _MissingCounter extends StatelessWidget {
-  const _MissingCounter();
+class MissingCounter extends StatelessWidget {
+  const MissingCounter({super.key});
 
   // TODO(daniel): Localize
   @override
