@@ -1,12 +1,12 @@
 pr:
  branches:
-   include:
-     - main
+   exclude:
+     - '*'
 
 trigger:
- branches:
-   exclude:
-     - main
+  branches:
+    exclude:
+      - '*'
 
 jobs:
   - job: Web_Build_Check
