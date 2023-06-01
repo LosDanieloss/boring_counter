@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
-  auto_route: ^6.0.3
+  auto_route: ^6.4.0
   bloc: ^8.1.1
   dio: ^5.0.2
   dio_smart_retry: ^5.0.0
