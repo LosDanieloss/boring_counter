@@ -30,7 +30,7 @@ dependencies:
   responsive_builder: ^0.6.4
   retrofit: ^4.0.1
   rxdart: ^0.27.7
-  shared_preferences: ^2.0.18
+  shared_preferences: ^2.2.0
   uuid: ^3.0.7
 
 dev_dependencies:
