@@ -23,7 +23,7 @@ jobs:
       flutter_version: 3.16.5
       concurrency: 1
       test_optimization: false
-      test_recursion: false
+      min_coverage: 80
 
   spell-check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
