@@ -4,17 +4,16 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i4;
 import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
-import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
+import 'package:boring_counter/config/app/staging_app_config.dart' as _i6;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
-    as _i26;
+    as _i27;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
     as _i31;
 import 'package:boring_counter/data_source/analytics/trackers/firebase_analytics_tracker.dart'
@@ -30,14 +29,14 @@ import 'package:boring_counter/data_source/counter/repository/stream_provider.da
 import 'package:boring_counter/data_source/crashlytics/default_crashlytics_repository.dart'
     as _i35;
 import 'package:boring_counter/data_source/crashlytics/error_tracker.dart'
-    as _i27;
+    as _i26;
 import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_tracker.dart'
     as _i12;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
     as _i17;
-import 'package:boring_counter/di/injectable/modules/analytics.dart' as _i41;
-import 'package:boring_counter/di/injectable/modules/crashlytics.dart' as _i39;
-import 'package:boring_counter/di/injectable/modules/generic.dart' as _i40;
+import 'package:boring_counter/di/injectable/modules/analytics.dart' as _i39;
+import 'package:boring_counter/di/injectable/modules/crashlytics.dart' as _i40;
+import 'package:boring_counter/di/injectable/modules/generic.dart' as _i41;
 import 'package:boring_counter/domain/analytics/analytics_repository.dart'
     as _i30;
 import 'package:boring_counter/domain/analytics/event_tracker_use_case.dart'
@@ -77,11 +76,9 @@ import 'package:shared_preferences/shared_preferences.dart' as _i14;
 import 'package:uuid/uuid.dart' as _i20;
 
 const String _development = 'development';
-const String _staging = 'staging';
 const String _production = 'production';
+const String _staging = 'staging';
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> init(
   _i1.GetIt getIt, {
@@ -97,16 +94,16 @@ Future<_i1.GetIt> init(
   final crashlyticsModule = _$CrashlyticsModule();
   final genericModule = _$GenericModule();
   gh.factory<_i3.AppConfig>(
-    () => _i4.StagingAppConfig(),
-    registerFor: {_staging},
+    () => _i4.DevelopmentAppConfig(),
+    registerFor: {_development},
   );
   gh.factory<_i3.AppConfig>(
     () => _i5.ProductionAppConfig(),
     registerFor: {_production},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i6.DevelopmentAppConfig(),
-    registerFor: {_development},
+    () => _i6.StagingAppConfig(),
+    registerFor: {_staging},
   );
   gh.singleton<_i7.AppRouter>(_i7.AppRouter());
   gh.factory<_i8.DataSourceCounterMapper>(() => _i8.DataSourceCounterMapper());
@@ -137,7 +134,7 @@ Future<_i1.GetIt> init(
   gh.factory<_i17.StdOutErrorTracker>(
       () => _i17.StdOutErrorTracker(logger: gh<_i13.Logger>()));
   gh.factory<_i18.StreamProvider>(() => _i18.StreamProvider());
-  gh.factory<_i19.UiCounterMapper>(() => _i19.UiCounterMapper());
+  gh.factory<_i19.UiCounterMapper>(() => const _i19.UiCounterMapper());
   await gh.factoryAsync<_i20.Uuid>(
     () => genericModule.getUuidGenerator(),
     preResolve: true,
@@ -153,23 +150,23 @@ Future<_i1.GetIt> init(
       _i24.DecrementCounterUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i25.IncrementCounterUseCase>(() =>
       _i25.IncrementCounterUseCase(repository: gh<_i21.CounterRepository>()));
-  gh.factory<List<_i26.AnalyticsTracker>>(
+  gh.factory<List<_i26.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
+        gh<_i3.AppConfig>(),
+        gh<_i12.FirebaseErrorTracker>(),
+        gh<_i17.StdOutErrorTracker>(),
+      ));
+  gh.factory<List<_i27.AnalyticsTracker>>(
       () => analyticsModule.getAnalyticsTrackers(
             gh<_i3.AppConfig>(),
             gh<_i10.FirebaseAnalyticsTracker>(),
             gh<_i16.StdOutAnalyticsTracker>(),
           ));
-  gh.factory<List<_i27.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
-        gh<_i3.AppConfig>(),
-        gh<_i12.FirebaseErrorTracker>(),
-        gh<_i17.StdOutErrorTracker>(),
-      ));
   gh.factory<_i28.WatchCounterUseCase>(
       () => _i28.WatchCounterUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i29.WatchCountersUseCase>(() =>
       _i29.WatchCountersUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i30.AnalyticsRepository>(() => _i31.DefaultAnalyticsRepository(
-      trackers: gh<List<_i26.AnalyticsTracker>>()));
+      trackers: gh<List<_i27.AnalyticsTracker>>()));
   gh.factory<_i32.CounterCubit>(
     () => _i32.CounterCubit(
       watchCounterUseCase: gh<_i21.WatchCounterUseCase>(),
@@ -198,7 +195,7 @@ Future<_i1.GetIt> init(
   );
   gh.factory<_i34.CrashlyticsRepository>(() =>
       _i35.DefaultCrashlyticsRepository(
-          trackers: gh<List<_i27.ErrorTracker>>()));
+          trackers: gh<List<_i26.ErrorTracker>>()));
   gh.factory<_i36.ErrorTrackerUseCase>(() => _i36.ErrorTrackerUseCase(
       crashlyticsRepository: gh<_i34.CrashlyticsRepository>()));
   gh.factory<_i37.EventTrackerUseCase>(() => _i37.EventTrackerUseCase(
@@ -208,8 +205,8 @@ Future<_i1.GetIt> init(
   return getIt;
 }
 
-class _$CrashlyticsModule extends _i39.CrashlyticsModule {}
+class _$AnalyticsModule extends _i39.AnalyticsModule {}
 
-class _$GenericModule extends _i40.GenericModule {}
+class _$CrashlyticsModule extends _i40.CrashlyticsModule {}
 
-class _$AnalyticsModule extends _i41.AnalyticsModule {}
+class _$GenericModule extends _i41.GenericModule {}

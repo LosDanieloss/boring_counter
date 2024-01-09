@@ -68,21 +68,22 @@ class _$UiCounterCopyWithImpl<$Res, $Val extends UiCounter>
 }
 
 /// @nodoc
-abstract class _$$_UiCounterCopyWith<$Res> implements $UiCounterCopyWith<$Res> {
-  factory _$$_UiCounterCopyWith(
-          _$_UiCounter value, $Res Function(_$_UiCounter) then) =
-      __$$_UiCounterCopyWithImpl<$Res>;
+abstract class _$$UiCounterImplCopyWith<$Res>
+    implements $UiCounterCopyWith<$Res> {
+  factory _$$UiCounterImplCopyWith(
+          _$UiCounterImpl value, $Res Function(_$UiCounterImpl) then) =
+      __$$UiCounterImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, int count});
 }
 
 /// @nodoc
-class __$$_UiCounterCopyWithImpl<$Res>
-    extends _$UiCounterCopyWithImpl<$Res, _$_UiCounter>
-    implements _$$_UiCounterCopyWith<$Res> {
-  __$$_UiCounterCopyWithImpl(
-      _$_UiCounter _value, $Res Function(_$_UiCounter) _then)
+class __$$UiCounterImplCopyWithImpl<$Res>
+    extends _$UiCounterCopyWithImpl<$Res, _$UiCounterImpl>
+    implements _$$UiCounterImplCopyWith<$Res> {
+  __$$UiCounterImplCopyWithImpl(
+      _$UiCounterImpl _value, $Res Function(_$UiCounterImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +93,7 @@ class __$$_UiCounterCopyWithImpl<$Res>
     Object? name = null,
     Object? count = null,
   }) {
-    return _then(_$_UiCounter(
+    return _then(_$UiCounterImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -111,8 +112,8 @@ class __$$_UiCounterCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiCounter implements _UiCounter {
-  const _$_UiCounter(
+class _$UiCounterImpl implements _UiCounter {
+  const _$UiCounterImpl(
       {required this.id, required this.name, required this.count});
 
   @override
@@ -128,10 +129,10 @@ class _$_UiCounter implements _UiCounter {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiCounter &&
+            other is _$UiCounterImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.count, count) || other.count == count));
@@ -143,15 +144,15 @@ class _$_UiCounter implements _UiCounter {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiCounterCopyWith<_$_UiCounter> get copyWith =>
-      __$$_UiCounterCopyWithImpl<_$_UiCounter>(this, _$identity);
+  _$$UiCounterImplCopyWith<_$UiCounterImpl> get copyWith =>
+      __$$UiCounterImplCopyWithImpl<_$UiCounterImpl>(this, _$identity);
 }
 
 abstract class _UiCounter implements UiCounter {
   const factory _UiCounter(
       {required final String id,
       required final String name,
-      required final int count}) = _$_UiCounter;
+      required final int count}) = _$UiCounterImpl;
 
   @override
   String get id;
@@ -161,6 +162,6 @@ abstract class _UiCounter implements UiCounter {
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$_UiCounterCopyWith<_$_UiCounter> get copyWith =>
+  _$$UiCounterImplCopyWith<_$UiCounterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
