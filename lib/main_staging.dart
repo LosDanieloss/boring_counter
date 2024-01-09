@@ -14,7 +14,5 @@ void main() async {
     environment: EnvironmentName.staging,
   );
   await configureDartEnvironment();
-  await bootstrap(
-    App.new,
-  );
+  await bootstrap(App.new);
 }

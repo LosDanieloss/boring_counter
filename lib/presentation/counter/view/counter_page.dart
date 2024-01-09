@@ -93,14 +93,13 @@ class VerticalDragWrapper extends StatelessWidget {
         gestures: {
           VerticalDragGestureRecognizer: VerticalDragGestureRecognizerFactory(
             VerticalDragGestureRecognizer.new,
-            (VerticalDragGestureRecognizer instance) => {
-              instance.onEnd = (details) {
-                final velocity = details.primaryVelocity ?? _defaultVelocity;
-                if (velocity >= _incrementVelocityThreshold) {
-                  onIncrement?.call();
-                } else {
-                  onDecrement?.call();
-                }
+            (VerticalDragGestureRecognizer instance) =>
+                instance.onEnd = (details) {
+              final velocity = details.primaryVelocity ?? _defaultVelocity;
+              if (velocity >= _incrementVelocityThreshold) {
+                onIncrement?.call();
+              } else {
+                onDecrement?.call();
               }
             },
           ),

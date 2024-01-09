@@ -7,9 +7,10 @@ import 'injectable.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-    preferRelativeImports: true,
-    asExtension: false,
-    generateForDir: ['lib', 'test'])
+  preferRelativeImports: true,
+  asExtension: false,
+  generateForDir: ['lib', 'test'],
+)
 Future<void> configureDependencies({
   String environment = EnvironmentName.tests,
 }) =>

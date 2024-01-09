@@ -16,7 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   // ignore: strict_raw_type
   MockSpec<StreamController>(),
   MockSpec<StreamProvider>(),
-  MockSpec<SharedPreferences>()
+  MockSpec<SharedPreferences>(),
 ])
 import 'prefs_counter_repository_test.mocks.dart';
 
@@ -134,7 +134,9 @@ void main() {
           final existingCounterId = existingCounter.id;
           when(preferences.getStringList('counters_key')).thenAnswer(
             (realInvocation) => [
-              jsonEncode(mapper.toDataSource(counter: existingCounter).toJson())
+              jsonEncode(
+                mapper.toDataSource(counter: existingCounter).toJson(),
+              ),
             ],
           );
           final counter =
@@ -189,7 +191,9 @@ void main() {
         () async {
           when(preferences.getStringList('counters_key')).thenAnswer(
             (realInvocation) => [
-              jsonEncode(mapper.toDataSource(counter: existingCounter).toJson())
+              jsonEncode(
+                mapper.toDataSource(counter: existingCounter).toJson(),
+              ),
             ],
           );
           final updatedCounter = existingCounter.copyWith(

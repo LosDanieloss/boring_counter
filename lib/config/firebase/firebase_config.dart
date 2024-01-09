@@ -1,8 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/firebase_options.dart' as prod;
 import 'package:boring_counter/firebase_options_dev.dart' as dev;
 import 'package:boring_counter/firebase_options_stg.dart' as stg;
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> configureFirebaseApp({
   required String environment,

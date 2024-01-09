@@ -227,8 +227,15 @@ void main() {
         ],
         verify: (bloc) {
           verify(
-              decrementCounterUseCase.decrement(counter: anyNamed('counter')));
-          verify(watchCounterUseCase.watch(counterId: anyNamed('counterId')));
+            decrementCounterUseCase.decrement(
+              counter: anyNamed('counter'),
+            ),
+          );
+          verify(
+            watchCounterUseCase.watch(
+              counterId: anyNamed('counterId'),
+            ),
+          );
         },
       );
     },

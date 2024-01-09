@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_redundant_argument_values
+
 import 'package:boring_counter/bootstrap.dart';
 import 'package:boring_counter/config/dart/dart_config.dart';
 import 'package:boring_counter/config/firebase/firebase_config.dart';
@@ -14,7 +16,5 @@ void main() async {
     environment: EnvironmentName.development,
   );
   await configureDartEnvironment();
-  await bootstrap(
-    () => App(),
-  );
+  await bootstrap(App.new);
 }

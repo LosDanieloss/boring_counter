@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../helpers/helpers.dart';
-import '../../../helpers/pump_app.mocks.dart';
 
 class MockSplashCubit extends MockCubit<SplashState> implements SplashCubit {}
 

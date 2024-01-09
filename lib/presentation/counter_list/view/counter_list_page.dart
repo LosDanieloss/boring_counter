@@ -47,7 +47,7 @@ class WidePage extends StatelessWidget {
           const VerticalDivider(),
           const Flexible(
             child: AutoRouter(),
-          )
+          ),
         ],
       );
 }
@@ -113,7 +113,8 @@ class MultipleTapGestureWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => RawGestureDetector(
-        // TODO(daniel): check if opaque behavior is needed after widget tree is done
+        // TODO(daniel): check if opaque behavior is needed
+        // after widget tree is done
         behavior: HitTestBehavior.opaque,
         gestures: {
           MultipleTapGestureRecognizer: MultipleTapGestureRecognizerFactory(
@@ -148,8 +149,8 @@ class LoadingWidget extends StatelessWidget {
 
 class MaybeCountersWidget extends StatelessWidget {
   const MaybeCountersWidget({
-    super.key,
     required this.counters,
+    super.key,
   });
 
   final List<UiCounter> counters;

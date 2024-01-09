@@ -14,7 +14,5 @@ void main() async {
     environment: EnvironmentName.production,
   );
   await configureDartEnvironment();
-  await bootstrap(
-    () => App(),
-  );
+  await bootstrap(App.new);
 }

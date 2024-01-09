@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:boring_counter/di/injectable/configure_injectable.dart';
 import 'package:boring_counter/domain/crashlytics/error_tracker_use_case.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {
   AppBlocObserver({

@@ -15,11 +15,14 @@ extension SetupDeviceScreen on WidgetTester {
   void setupNexusScreen() => _setupDeviceScreen(nexus6Size, nexus6PixelRatio);
 
   void _setupDeviceScreen(Size size, double devicePixelRatio) {
-    binding.window.physicalSizeTestValue = size;
-    binding.window.devicePixelRatioTestValue = devicePixelRatio;
+    view
+      ..physicalSize = size
+      ..devicePixelRatio = devicePixelRatio;
   }
 
   void clearScreenSetup() => addTearDown(
-        binding.window.clearPhysicalSizeTestValue,
+        () => view
+          ..resetPhysicalSize()
+          ..resetDevicePixelRatio(),
       );
 }

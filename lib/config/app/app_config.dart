@@ -4,8 +4,8 @@ abstract class AppConfig {
     required this.appTitle,
     required this.baseUrl,
     required this.authenticationBaseUrl,
-    this.grantType = 'Bearer',
     required this.clientId,
+    this.grantType = 'Bearer',
     this.connectTimeout = const Duration(seconds: 10),
     this.receiveTimeout = const Duration(seconds: 10),
     this.autoRetryRequestOnFailureCount = 3,
@@ -16,8 +16,8 @@ abstract class AppConfig {
   final String appTitle;
   final String baseUrl;
   final String authenticationBaseUrl;
-  final String grantType;
   final String clientId;
+  final String grantType;
   final Duration connectTimeout;
   final Duration receiveTimeout;
   final int autoRetryRequestOnFailureCount;
