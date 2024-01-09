@@ -1,10 +1,21 @@
 import 'dart:async';
 
+import 'package:boring_counter/data_source/counter/repository/stream_provider.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
 
 class MemoryCounterRepository implements CounterRepository {
+  MemoryCounterRepository({
+    required this.streamProvider,
+  }) {
+    _countersController = streamProvider.provideCountersStream()
+      ..add(
+        List.empty(),
+      );
+  }
+
+  final StreamProvider streamProvider;
+
   List<Counter> _counters = List.empty();
 
   final Map<CounterId, StreamController<Counter>> _counterControllerMap = {};
@@ -14,10 +25,7 @@ class MemoryCounterRepository implements CounterRepository {
         (id, controller) => MapEntry(id, controller.stream),
       );
 
-  final StreamController<List<Counter>> _countersController = BehaviorSubject()
-    ..add(
-      List.empty(),
-    );
+  late StreamController<List<Counter>> _countersController;
 
   Stream<List<Counter>> get _countersStream => _countersController.stream;
 
@@ -37,8 +45,8 @@ class MemoryCounterRepository implements CounterRepository {
     _countersController.add(_counters);
     _counterControllerMap.update(
       newCounter.id,
-      (value) => BehaviorSubject()..add(newCounter),
-      ifAbsent: () => BehaviorSubject()..add(newCounter),
+      (value) => value..add(newCounter),
+      ifAbsent: () => streamProvider.provideCounterStream()..add(newCounter),
     );
     return newCounter;
   }
@@ -49,11 +57,6 @@ class MemoryCounterRepository implements CounterRepository {
   }) async =>
       _counters.firstWhere(
         (element) => element.id == counterId,
-        orElse: () => const Counter(
-          id: 'id',
-          name: 'name',
-          count: 0,
-        ),
       );
 
   @override

@@ -1,7 +1,12 @@
-trigger:
+pr:
  branches:
    exclude:
-     - main
+     - '*'
+
+trigger:
+  branches:
+    exclude:
+      - '*'
 
 jobs:
   - job: Web_Build_Check

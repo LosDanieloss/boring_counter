@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:boring_counter/domain/counter/counter.dart';
 
 typedef CounterId = String;

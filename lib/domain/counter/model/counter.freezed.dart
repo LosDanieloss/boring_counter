@@ -67,20 +67,21 @@ class _$CounterCopyWithImpl<$Res, $Val extends Counter>
 }
 
 /// @nodoc
-abstract class _$$_CounterCopyWith<$Res> implements $CounterCopyWith<$Res> {
-  factory _$$_CounterCopyWith(
-          _$_Counter value, $Res Function(_$_Counter) then) =
-      __$$_CounterCopyWithImpl<$Res>;
+abstract class _$$CounterImplCopyWith<$Res> implements $CounterCopyWith<$Res> {
+  factory _$$CounterImplCopyWith(
+          _$CounterImpl value, $Res Function(_$CounterImpl) then) =
+      __$$CounterImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, int count});
 }
 
 /// @nodoc
-class __$$_CounterCopyWithImpl<$Res>
-    extends _$CounterCopyWithImpl<$Res, _$_Counter>
-    implements _$$_CounterCopyWith<$Res> {
-  __$$_CounterCopyWithImpl(_$_Counter _value, $Res Function(_$_Counter) _then)
+class __$$CounterImplCopyWithImpl<$Res>
+    extends _$CounterCopyWithImpl<$Res, _$CounterImpl>
+    implements _$$CounterImplCopyWith<$Res> {
+  __$$CounterImplCopyWithImpl(
+      _$CounterImpl _value, $Res Function(_$CounterImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_CounterCopyWithImpl<$Res>
     Object? name = null,
     Object? count = null,
   }) {
-    return _then(_$_Counter(
+    return _then(_$CounterImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -109,8 +110,9 @@ class __$$_CounterCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Counter implements _Counter {
-  const _$_Counter({required this.id, required this.name, required this.count});
+class _$CounterImpl implements _Counter {
+  const _$CounterImpl(
+      {required this.id, required this.name, required this.count});
 
   @override
   final String id;
@@ -125,10 +127,10 @@ class _$_Counter implements _Counter {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Counter &&
+            other is _$CounterImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.count, count) || other.count == count));
@@ -140,15 +142,15 @@ class _$_Counter implements _Counter {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CounterCopyWith<_$_Counter> get copyWith =>
-      __$$_CounterCopyWithImpl<_$_Counter>(this, _$identity);
+  _$$CounterImplCopyWith<_$CounterImpl> get copyWith =>
+      __$$CounterImplCopyWithImpl<_$CounterImpl>(this, _$identity);
 }
 
 abstract class _Counter implements Counter {
   const factory _Counter(
       {required final String id,
       required final String name,
-      required final int count}) = _$_Counter;
+      required final int count}) = _$CounterImpl;
 
   @override
   String get id;
@@ -158,6 +160,6 @@ abstract class _Counter implements Counter {
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$_CounterCopyWith<_$_Counter> get copyWith =>
+  _$$CounterImplCopyWith<_$CounterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

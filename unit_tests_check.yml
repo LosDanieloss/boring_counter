@@ -1,0 +1,39 @@
+pr:
+ branches:
+   exclude:
+     - '*'
+
+trigger:
+  branches:
+    exclude:
+      - '*'
+
+jobs:
+  - job: App_Build_Check
+    pool:
+      vmImage: 'macOS-latest'
+    variables:
+      - group: boring-counter-general
+      
+    steps:
+    
+      - task: JavaToolInstaller@0
+        displayName: 'Install Java v11'
+        inputs:
+          versionSpec: '11'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
+
+      - task: FlutterInstall@0
+        displayName: 'Install Flutter'
+        inputs:
+          mode: 'auto'
+          channel: '$(flutter_channel)'
+          version: 'custom'
+          customVersion: '$(flutter_version)'
+
+      - task: FlutterTest@0
+        displayName: 'Run unit tests'
+        inputs:
+          projectDirectory: '.'
+          generateCodeCoverageReport: true

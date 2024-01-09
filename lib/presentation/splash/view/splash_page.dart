@@ -10,28 +10,36 @@ class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer(
-      bloc: getIt.get<SplashCubit>()..initializeApp(),
-      builder: (context, SplashState state) => const Scaffold(
-        backgroundColor: Colors.lightBlue,
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Colors.amber,
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => getIt.get<SplashCubit>()..initializeApp(),
+        child: const SplashView(),
+      );
+}
+
+class SplashView extends StatelessWidget {
+  const SplashView({super.key});
+
+  @override
+  Widget build(BuildContext context) => BlocConsumer(
+        bloc: context.read<SplashCubit>(),
+        builder: (context, SplashState state) => const Scaffold(
+          backgroundColor: Colors.lightBlue,
+          body: Center(
+            child: CircularProgressIndicator(
+              color: Colors.amber,
+            ),
           ),
         ),
-      ),
-      listener: (context, SplashState state) {
-        state.mapOrNull(
-          initial: null,
-          loading: null,
-          ready: (_) => _navigatePastSplash(
-            context: context,
-          ),
-        );
-      },
-    );
-  }
+        listener: (context, SplashState state) {
+          state.mapOrNull(
+            initial: null,
+            loading: null,
+            ready: (_) => _navigatePastSplash(
+              context: context,
+            ),
+          );
+        },
+      );
 
   void _navigatePastSplash({
     required BuildContext context,

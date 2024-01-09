@@ -1,3 +1,13 @@
+pr:
+ branches:
+   exclude:
+     - '*'
+
+trigger:
+  branches:
+    exclude:
+      - '*'
+
 jobs:
   - job: App_Build_Check
     pool:

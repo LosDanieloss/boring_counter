@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:boring_counter/data_source/counter/mapper/data_source_counter_mapper.dart';
 import 'package:boring_counter/data_source/counter/model/data_source_counter.dart';
+import 'package:boring_counter/data_source/counter/repository/stream_provider.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,7 +14,12 @@ class PrefsCounterRepository implements CounterRepository {
   PrefsCounterRepository({
     required this.preferences,
     required this.mapper,
+    required this.streamProvider,
   }) {
+    _countersController = streamProvider.provideCountersStream()
+      ..add(
+        List.empty(),
+      );
     final counters = _getCounters();
     _publishCounters(
       counters: counters,
@@ -25,13 +30,16 @@ class PrefsCounterRepository implements CounterRepository {
       );
       _counterControllerMap.update(
         counter.id,
-        (value) => BehaviorSubject()..add(domainCounter),
-        ifAbsent: () => BehaviorSubject()..add(domainCounter),
+        (value) => value..add(domainCounter),
+        ifAbsent: () =>
+            streamProvider.provideCounterStream()..add(domainCounter),
       );
     }
   }
 
   static const String _countersKey = 'counters_key';
+
+  final StreamProvider streamProvider;
 
   final SharedPreferences preferences;
 
@@ -44,10 +52,7 @@ class PrefsCounterRepository implements CounterRepository {
         (id, controller) => MapEntry(id, controller.stream),
       );
 
-  final StreamController<List<Counter>> _countersController = BehaviorSubject()
-    ..add(
-      List.empty(),
-    );
+  late StreamController<List<Counter>> _countersController;
 
   Stream<List<Counter>> get _countersStream => _countersController.stream;
 
@@ -72,8 +77,8 @@ class PrefsCounterRepository implements CounterRepository {
     );
     _counterControllerMap.update(
       counter.id,
-      (value) => BehaviorSubject()..add(counter),
-      ifAbsent: () => BehaviorSubject()..add(counter),
+      (value) => value..add(counter),
+      ifAbsent: () => streamProvider.provideCounterStream()..add(counter),
     );
 
     return counter;

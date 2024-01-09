@@ -1,11 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/domain/counter/counter.dart';
 import 'package:boring_counter/presentation/counter/mapper/ui_counter_mapper.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:injectable/injectable.dart';
 
+@Environment(EnvironmentName.development)
+@Environment(EnvironmentName.staging)
+@Environment(EnvironmentName.production)
 @injectable
 class CounterCubit extends Cubit<UiCounter?> {
   CounterCubit({

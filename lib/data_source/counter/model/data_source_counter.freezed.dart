@@ -74,22 +74,22 @@ class _$DataSourceCounterCopyWithImpl<$Res, $Val extends DataSourceCounter>
 }
 
 /// @nodoc
-abstract class _$$_DataSourceCounterCopyWith<$Res>
+abstract class _$$DataSourceCounterImplCopyWith<$Res>
     implements $DataSourceCounterCopyWith<$Res> {
-  factory _$$_DataSourceCounterCopyWith(_$_DataSourceCounter value,
-          $Res Function(_$_DataSourceCounter) then) =
-      __$$_DataSourceCounterCopyWithImpl<$Res>;
+  factory _$$DataSourceCounterImplCopyWith(_$DataSourceCounterImpl value,
+          $Res Function(_$DataSourceCounterImpl) then) =
+      __$$DataSourceCounterImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, int count});
 }
 
 /// @nodoc
-class __$$_DataSourceCounterCopyWithImpl<$Res>
-    extends _$DataSourceCounterCopyWithImpl<$Res, _$_DataSourceCounter>
-    implements _$$_DataSourceCounterCopyWith<$Res> {
-  __$$_DataSourceCounterCopyWithImpl(
-      _$_DataSourceCounter _value, $Res Function(_$_DataSourceCounter) _then)
+class __$$DataSourceCounterImplCopyWithImpl<$Res>
+    extends _$DataSourceCounterCopyWithImpl<$Res, _$DataSourceCounterImpl>
+    implements _$$DataSourceCounterImplCopyWith<$Res> {
+  __$$DataSourceCounterImplCopyWithImpl(_$DataSourceCounterImpl _value,
+      $Res Function(_$DataSourceCounterImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_DataSourceCounterCopyWithImpl<$Res>
     Object? name = null,
     Object? count = null,
   }) {
-    return _then(_$_DataSourceCounter(
+    return _then(_$DataSourceCounterImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -118,12 +118,12 @@ class __$$_DataSourceCounterCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DataSourceCounter implements _DataSourceCounter {
-  const _$_DataSourceCounter(
+class _$DataSourceCounterImpl implements _DataSourceCounter {
+  const _$DataSourceCounterImpl(
       {required this.id, required this.name, required this.count});
 
-  factory _$_DataSourceCounter.fromJson(Map<String, dynamic> json) =>
-      _$$_DataSourceCounterFromJson(json);
+  factory _$DataSourceCounterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DataSourceCounterImplFromJson(json);
 
   @override
   final String id;
@@ -138,10 +138,10 @@ class _$_DataSourceCounter implements _DataSourceCounter {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DataSourceCounter &&
+            other is _$DataSourceCounterImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.count, count) || other.count == count));
@@ -154,13 +154,13 @@ class _$_DataSourceCounter implements _DataSourceCounter {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataSourceCounterCopyWith<_$_DataSourceCounter> get copyWith =>
-      __$$_DataSourceCounterCopyWithImpl<_$_DataSourceCounter>(
+  _$$DataSourceCounterImplCopyWith<_$DataSourceCounterImpl> get copyWith =>
+      __$$DataSourceCounterImplCopyWithImpl<_$DataSourceCounterImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataSourceCounterToJson(
+    return _$$DataSourceCounterImplToJson(
       this,
     );
   }
@@ -170,10 +170,10 @@ abstract class _DataSourceCounter implements DataSourceCounter {
   const factory _DataSourceCounter(
       {required final String id,
       required final String name,
-      required final int count}) = _$_DataSourceCounter;
+      required final int count}) = _$DataSourceCounterImpl;
 
   factory _DataSourceCounter.fromJson(Map<String, dynamic> json) =
-      _$_DataSourceCounter.fromJson;
+      _$DataSourceCounterImpl.fromJson;
 
   @override
   String get id;
@@ -183,6 +183,6 @@ abstract class _DataSourceCounter implements DataSourceCounter {
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$_DataSourceCounterCopyWith<_$_DataSourceCounter> get copyWith =>
+  _$$DataSourceCounterImplCopyWith<_$DataSourceCounterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

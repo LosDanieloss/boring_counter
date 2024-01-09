@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:boring_counter/di/injectable/all.dart';
 import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
@@ -18,16 +17,23 @@ class CounterListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => getIt.get<CounterListCubit>()..watchCounters(),
-        child: ScreenTypeLayout.builder(
-          desktop: (_) => const _WidePage(),
-          tablet: (_) => const _WidePage(),
-          mobile: (_) => const _NarrowPage(),
-        ),
+        child: const CounterListViewWrapper(),
       );
 }
 
-class _WidePage extends StatelessWidget {
-  const _WidePage();
+class CounterListViewWrapper extends StatelessWidget {
+  const CounterListViewWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) => ScreenTypeLayout.builder(
+        desktop: (_) => const WidePage(),
+        tablet: (_) => const WidePage(),
+        mobile: (_) => const NarrowPage(),
+      );
+}
+
+class WidePage extends StatelessWidget {
+  const WidePage({super.key});
 
   @override
   Widget build(BuildContext context) => Row(
@@ -36,7 +42,7 @@ class _WidePage extends StatelessWidget {
             constraints: const BoxConstraints(
               maxWidth: 380,
             ),
-            child: const _CounterListView(),
+            child: const CounterListView(),
           ),
           const VerticalDivider(),
           const Flexible(
@@ -46,33 +52,33 @@ class _WidePage extends StatelessWidget {
       );
 }
 
-class _NarrowPage extends StatelessWidget {
-  const _NarrowPage();
+class NarrowPage extends StatelessWidget {
+  const NarrowPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const _CounterListView();
+  Widget build(BuildContext context) => const CounterListView();
 }
 
-class _CounterListView extends StatelessWidget {
-  const _CounterListView();
+class CounterListView extends StatelessWidget {
+  const CounterListView({super.key});
 
   @override
   Widget build(BuildContext context) => BlocBuilder(
         bloc: context.read<CounterListCubit>(),
         builder: (BuildContext context, CounterListState state) {
           return Scaffold(
-            body: _MultipleTapGestureWrapper(
+            body: MultipleTapGestureWrapper(
               state: state,
               child: state.map(
                 loading: (loadingState) => Stack(
                   children: [
-                    _MaybeCountersWidget(
+                    MaybeCountersWidget(
                       counters: loadingState.counters,
                     ),
-                    const _LoadingWidget(),
+                    const LoadingWidget(),
                   ],
                 ),
-                ready: (readyState) => _MaybeCountersWidget(
+                ready: (readyState) => MaybeCountersWidget(
                   counters: readyState.counters,
                 ),
               ),
@@ -81,7 +87,7 @@ class _CounterListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                _AddButton(
+                AddButton(
                   onPressed: () =>
                       context.read<CounterListCubit>().createCounter(
                             name: 'Counter #${state.counters.length}',
@@ -94,10 +100,11 @@ class _CounterListView extends StatelessWidget {
       );
 }
 
-class _MultipleTapGestureWrapper extends StatelessWidget {
-  const _MultipleTapGestureWrapper({
+class MultipleTapGestureWrapper extends StatelessWidget {
+  const MultipleTapGestureWrapper({
     required this.child,
     required this.state,
+    super.key,
   });
 
   final Widget child;
@@ -126,8 +133,8 @@ class _MultipleTapGestureWrapper extends StatelessWidget {
       );
 }
 
-class _LoadingWidget extends StatelessWidget {
-  const _LoadingWidget();
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({super.key});
 
   static const double _opacity = 0.64;
 
@@ -140,8 +147,8 @@ class _LoadingWidget extends StatelessWidget {
       );
 }
 
-class _MaybeCountersWidget extends StatelessWidget {
-  const _MaybeCountersWidget({
+class MaybeCountersWidget extends StatelessWidget {
+  const MaybeCountersWidget({super.key,
     required this.counters,
   });
 
@@ -166,6 +173,7 @@ class _CountersWidget extends StatelessWidget {
   Widget build(BuildContext context) => ListView.builder(
         itemCount: counters.length,
         itemBuilder: (context, index) => CounterItemWidget(
+          key: ValueKey(counters[index].id),
           counter: counters[index],
         ),
       );
@@ -191,9 +199,10 @@ class _EmptyWidget extends StatelessWidget {
   }
 }
 
-class _AddButton extends StatelessWidget {
-  const _AddButton({
+class AddButton extends StatelessWidget {
+  const AddButton({
     required this.onPressed,
+    super.key,
   });
 
   final VoidCallback? onPressed;

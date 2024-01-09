@@ -4,6 +4,8 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class UiCounterMapper {
+  const UiCounterMapper();
+
   Counter toDomain({
     required UiCounter uiCounter,
   }) =>

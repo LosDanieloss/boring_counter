@@ -1,5 +1,5 @@
-import 'package:injectable/injectable.dart';
 import 'package:boring_counter/domain/analytics/analytics_repository.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class ScreenTrackerUseCase {
