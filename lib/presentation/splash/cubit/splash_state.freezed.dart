@@ -81,25 +81,25 @@ class _$SplashStateCopyWithImpl<$Res, $Val extends SplashState>
 }
 
 /// @nodoc
-abstract class _$$_InitialStateCopyWith<$Res> {
-  factory _$$_InitialStateCopyWith(
-          _$_InitialState value, $Res Function(_$_InitialState) then) =
-      __$$_InitialStateCopyWithImpl<$Res>;
+abstract class _$$InitialStateImplCopyWith<$Res> {
+  factory _$$InitialStateImplCopyWith(
+          _$InitialStateImpl value, $Res Function(_$InitialStateImpl) then) =
+      __$$InitialStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialStateCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_InitialState>
-    implements _$$_InitialStateCopyWith<$Res> {
-  __$$_InitialStateCopyWithImpl(
-      _$_InitialState _value, $Res Function(_$_InitialState) _then)
+class __$$InitialStateImplCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$InitialStateImpl>
+    implements _$$InitialStateImplCopyWith<$Res> {
+  __$$InitialStateImplCopyWithImpl(
+      _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_InitialState implements _InitialState {
-  const _$_InitialState();
+class _$InitialStateImpl implements _InitialState {
+  const _$InitialStateImpl();
 
   @override
   String toString() {
@@ -107,9 +107,9 @@ class _$_InitialState implements _InitialState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitialState);
+        (other.runtimeType == runtimeType && other is _$InitialStateImpl);
   }
 
   @override
@@ -185,29 +185,29 @@ class _$_InitialState implements _InitialState {
 }
 
 abstract class _InitialState implements SplashState {
-  const factory _InitialState() = _$_InitialState;
+  const factory _InitialState() = _$InitialStateImpl;
 }
 
 /// @nodoc
-abstract class _$$_LoadingStateCopyWith<$Res> {
-  factory _$$_LoadingStateCopyWith(
-          _$_LoadingState value, $Res Function(_$_LoadingState) then) =
-      __$$_LoadingStateCopyWithImpl<$Res>;
+abstract class _$$LoadingStateImplCopyWith<$Res> {
+  factory _$$LoadingStateImplCopyWith(
+          _$LoadingStateImpl value, $Res Function(_$LoadingStateImpl) then) =
+      __$$LoadingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingStateCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_LoadingState>
-    implements _$$_LoadingStateCopyWith<$Res> {
-  __$$_LoadingStateCopyWithImpl(
-      _$_LoadingState _value, $Res Function(_$_LoadingState) _then)
+class __$$LoadingStateImplCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    implements _$$LoadingStateImplCopyWith<$Res> {
+  __$$LoadingStateImplCopyWithImpl(
+      _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadingState implements _LoadingState {
-  const _$_LoadingState();
+class _$LoadingStateImpl implements _LoadingState {
+  const _$LoadingStateImpl();
 
   @override
   String toString() {
@@ -215,9 +215,9 @@ class _$_LoadingState implements _LoadingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadingState);
+        (other.runtimeType == runtimeType && other is _$LoadingStateImpl);
   }
 
   @override
@@ -293,29 +293,29 @@ class _$_LoadingState implements _LoadingState {
 }
 
 abstract class _LoadingState implements SplashState {
-  const factory _LoadingState() = _$_LoadingState;
+  const factory _LoadingState() = _$LoadingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$_ReadyStateCopyWith<$Res> {
-  factory _$$_ReadyStateCopyWith(
-          _$_ReadyState value, $Res Function(_$_ReadyState) then) =
-      __$$_ReadyStateCopyWithImpl<$Res>;
+abstract class _$$ReadyStateImplCopyWith<$Res> {
+  factory _$$ReadyStateImplCopyWith(
+          _$ReadyStateImpl value, $Res Function(_$ReadyStateImpl) then) =
+      __$$ReadyStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ReadyStateCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$_ReadyState>
-    implements _$$_ReadyStateCopyWith<$Res> {
-  __$$_ReadyStateCopyWithImpl(
-      _$_ReadyState _value, $Res Function(_$_ReadyState) _then)
+class __$$ReadyStateImplCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$ReadyStateImpl>
+    implements _$$ReadyStateImplCopyWith<$Res> {
+  __$$ReadyStateImplCopyWithImpl(
+      _$ReadyStateImpl _value, $Res Function(_$ReadyStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ReadyState implements _ReadyState {
-  const _$_ReadyState();
+class _$ReadyStateImpl implements _ReadyState {
+  const _$ReadyStateImpl();
 
   @override
   String toString() {
@@ -323,9 +323,9 @@ class _$_ReadyState implements _ReadyState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ReadyState);
+        (other.runtimeType == runtimeType && other is _$ReadyStateImpl);
   }
 
   @override
@@ -401,5 +401,5 @@ class _$_ReadyState implements _ReadyState {
 }
 
 abstract class _ReadyState implements SplashState {
-  const factory _ReadyState() = _$_ReadyState;
+  const factory _ReadyState() = _$ReadyStateImpl;
 }

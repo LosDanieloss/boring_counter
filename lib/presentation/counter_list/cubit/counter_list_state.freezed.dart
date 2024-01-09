@@ -95,22 +95,22 @@ class _$CounterListStateCopyWithImpl<$Res, $Val extends CounterListState>
 }
 
 /// @nodoc
-abstract class _$$_LoadingStateCopyWith<$Res>
+abstract class _$$LoadingStateImplCopyWith<$Res>
     implements $CounterListStateCopyWith<$Res> {
-  factory _$$_LoadingStateCopyWith(
-          _$_LoadingState value, $Res Function(_$_LoadingState) then) =
-      __$$_LoadingStateCopyWithImpl<$Res>;
+  factory _$$LoadingStateImplCopyWith(
+          _$LoadingStateImpl value, $Res Function(_$LoadingStateImpl) then) =
+      __$$LoadingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<UiCounter> counters});
 }
 
 /// @nodoc
-class __$$_LoadingStateCopyWithImpl<$Res>
-    extends _$CounterListStateCopyWithImpl<$Res, _$_LoadingState>
-    implements _$$_LoadingStateCopyWith<$Res> {
-  __$$_LoadingStateCopyWithImpl(
-      _$_LoadingState _value, $Res Function(_$_LoadingState) _then)
+class __$$LoadingStateImplCopyWithImpl<$Res>
+    extends _$CounterListStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    implements _$$LoadingStateImplCopyWith<$Res> {
+  __$$LoadingStateImplCopyWithImpl(
+      _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_LoadingStateCopyWithImpl<$Res>
   $Res call({
     Object? counters = null,
   }) {
-    return _then(_$_LoadingState(
+    return _then(_$LoadingStateImpl(
       counters: null == counters
           ? _value._counters
           : counters // ignore: cast_nullable_to_non_nullable
@@ -129,8 +129,8 @@ class __$$_LoadingStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadingState implements _LoadingState {
-  const _$_LoadingState({required final List<UiCounter> counters})
+class _$LoadingStateImpl implements _LoadingState {
+  const _$LoadingStateImpl({required final List<UiCounter> counters})
       : _counters = counters;
 
   final List<UiCounter> _counters;
@@ -147,10 +147,10 @@ class _$_LoadingState implements _LoadingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadingState &&
+            other is _$LoadingStateImpl &&
             const DeepCollectionEquality().equals(other._counters, _counters));
   }
 
@@ -161,8 +161,8 @@ class _$_LoadingState implements _LoadingState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadingStateCopyWith<_$_LoadingState> get copyWith =>
-      __$$_LoadingStateCopyWithImpl<_$_LoadingState>(this, _$identity);
+  _$$LoadingStateImplCopyWith<_$LoadingStateImpl> get copyWith =>
+      __$$LoadingStateImplCopyWithImpl<_$LoadingStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -229,33 +229,33 @@ class _$_LoadingState implements _LoadingState {
 
 abstract class _LoadingState implements CounterListState {
   const factory _LoadingState({required final List<UiCounter> counters}) =
-      _$_LoadingState;
+      _$LoadingStateImpl;
 
   @override
   List<UiCounter> get counters;
   @override
   @JsonKey(ignore: true)
-  _$$_LoadingStateCopyWith<_$_LoadingState> get copyWith =>
+  _$$LoadingStateImplCopyWith<_$LoadingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ReadyStateCopyWith<$Res>
+abstract class _$$ReadyStateImplCopyWith<$Res>
     implements $CounterListStateCopyWith<$Res> {
-  factory _$$ReadyStateCopyWith(
-          _$ReadyState value, $Res Function(_$ReadyState) then) =
-      __$$ReadyStateCopyWithImpl<$Res>;
+  factory _$$ReadyStateImplCopyWith(
+          _$ReadyStateImpl value, $Res Function(_$ReadyStateImpl) then) =
+      __$$ReadyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<UiCounter> counters});
 }
 
 /// @nodoc
-class __$$ReadyStateCopyWithImpl<$Res>
-    extends _$CounterListStateCopyWithImpl<$Res, _$ReadyState>
-    implements _$$ReadyStateCopyWith<$Res> {
-  __$$ReadyStateCopyWithImpl(
-      _$ReadyState _value, $Res Function(_$ReadyState) _then)
+class __$$ReadyStateImplCopyWithImpl<$Res>
+    extends _$CounterListStateCopyWithImpl<$Res, _$ReadyStateImpl>
+    implements _$$ReadyStateImplCopyWith<$Res> {
+  __$$ReadyStateImplCopyWithImpl(
+      _$ReadyStateImpl _value, $Res Function(_$ReadyStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -263,7 +263,7 @@ class __$$ReadyStateCopyWithImpl<$Res>
   $Res call({
     Object? counters = null,
   }) {
-    return _then(_$ReadyState(
+    return _then(_$ReadyStateImpl(
       counters: null == counters
           ? _value._counters
           : counters // ignore: cast_nullable_to_non_nullable
@@ -274,8 +274,8 @@ class __$$ReadyStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReadyState implements ReadyState {
-  const _$ReadyState({required final List<UiCounter> counters})
+class _$ReadyStateImpl implements ReadyState {
+  const _$ReadyStateImpl({required final List<UiCounter> counters})
       : _counters = counters;
 
   final List<UiCounter> _counters;
@@ -292,10 +292,10 @@ class _$ReadyState implements ReadyState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReadyState &&
+            other is _$ReadyStateImpl &&
             const DeepCollectionEquality().equals(other._counters, _counters));
   }
 
@@ -306,8 +306,8 @@ class _$ReadyState implements ReadyState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReadyStateCopyWith<_$ReadyState> get copyWith =>
-      __$$ReadyStateCopyWithImpl<_$ReadyState>(this, _$identity);
+  _$$ReadyStateImplCopyWith<_$ReadyStateImpl> get copyWith =>
+      __$$ReadyStateImplCopyWithImpl<_$ReadyStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -374,12 +374,12 @@ class _$ReadyState implements ReadyState {
 
 abstract class ReadyState implements CounterListState {
   const factory ReadyState({required final List<UiCounter> counters}) =
-      _$ReadyState;
+      _$ReadyStateImpl;
 
   @override
   List<UiCounter> get counters;
   @override
   @JsonKey(ignore: true)
-  _$$ReadyStateCopyWith<_$ReadyState> get copyWith =>
+  _$$ReadyStateImplCopyWith<_$ReadyStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

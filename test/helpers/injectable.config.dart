@@ -4,8 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -35,9 +34,9 @@ import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_t
     as _i16;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
     as _i21;
-import 'package:boring_counter/di/injectable/modules/analytics.dart' as _i45;
-import 'package:boring_counter/di/injectable/modules/crashlytics.dart' as _i43;
-import 'package:boring_counter/di/injectable/modules/generic.dart' as _i44;
+import 'package:boring_counter/di/injectable/modules/analytics.dart' as _i43;
+import 'package:boring_counter/di/injectable/modules/crashlytics.dart' as _i44;
+import 'package:boring_counter/di/injectable/modules/generic.dart' as _i45;
 import 'package:boring_counter/domain/analytics/analytics_repository.dart'
     as _i34;
 import 'package:boring_counter/domain/analytics/event_tracker_use_case.dart'
@@ -84,13 +83,11 @@ import '../widget_test/presentation/counter_list/cubit/counter_list_cubit.dart'
     as _i11;
 import 'test_module.dart' as _i46;
 
-const String _development = 'development';
 const String _staging = 'staging';
 const String _production = 'production';
+const String _development = 'development';
 const String _tests = 'tests';
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> init(
   _i1.GetIt getIt, {
@@ -161,7 +158,7 @@ Future<_i1.GetIt> init(
   gh.factory<_i21.StdOutErrorTracker>(
       () => _i21.StdOutErrorTracker(logger: gh<_i17.Logger>()));
   gh.factory<_i22.StreamProvider>(() => _i22.StreamProvider());
-  gh.factory<_i23.UiCounterMapper>(() => _i23.UiCounterMapper());
+  gh.factory<_i23.UiCounterMapper>(() => const _i23.UiCounterMapper());
   await gh.factoryAsync<_i24.Uuid>(
     () => genericModule.getUuidGenerator(),
     preResolve: true,
@@ -232,10 +229,10 @@ Future<_i1.GetIt> init(
   return getIt;
 }
 
-class _$CrashlyticsModule extends _i43.CrashlyticsModule {}
+class _$AnalyticsModule extends _i43.AnalyticsModule {}
 
-class _$GenericModule extends _i44.GenericModule {}
+class _$CrashlyticsModule extends _i44.CrashlyticsModule {}
 
-class _$AnalyticsModule extends _i45.AnalyticsModule {}
+class _$GenericModule extends _i45.GenericModule {}
 
 class _$TestModule extends _i46.TestModule {}

@@ -55,8 +55,5 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     errorTrackerUseCase: errorTrackerUseCase,
   );
 
-  await runZonedGuarded(
-    () async => runApp(await builder()),
-    (error, stackTrace) => errorTrackerUseCase.trackFatal,
-  );
+  runApp(await builder());
 }
