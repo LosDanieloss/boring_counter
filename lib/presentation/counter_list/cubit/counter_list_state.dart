@@ -7,7 +7,7 @@ part 'counter_list_state.freezed.dart';
 class CounterListState with _$CounterListState {
   const factory CounterListState.loading({
     required List<UiCounter> counters,
-}) = _LoadingState;
+  }) = _LoadingState;
   const factory CounterListState.ready({
     required List<UiCounter> counters,
   }) = ReadyState;

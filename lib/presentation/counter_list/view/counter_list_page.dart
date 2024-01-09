@@ -118,13 +118,12 @@ class MultipleTapGestureWrapper extends StatelessWidget {
         gestures: {
           MultipleTapGestureRecognizer: MultipleTapGestureRecognizerFactory(
             MultipleTapGestureRecognizer.new,
-            (MultipleTapGestureRecognizer instance) => {
-              instance.onMultipleTap = (additionalFingersCount) {
-                if (state is ReadyState) {
-                  context.read<CounterListCubit>().incrementCounter(
-                        counterIndex: additionalFingersCount,
-                      );
-                }
+            (MultipleTapGestureRecognizer instance) =>
+                instance.onMultipleTap = (additionalFingersCount) {
+              if (state is ReadyState) {
+                context.read<CounterListCubit>().incrementCounter(
+                      counterIndex: additionalFingersCount,
+                    );
               }
             },
           ),
@@ -148,7 +147,8 @@ class LoadingWidget extends StatelessWidget {
 }
 
 class MaybeCountersWidget extends StatelessWidget {
-  const MaybeCountersWidget({super.key,
+  const MaybeCountersWidget({
+    super.key,
     required this.counters,
   });
 

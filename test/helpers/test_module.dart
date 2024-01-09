@@ -12,5 +12,3 @@ abstract class TestModule {
   @preResolve
   Future<SharedPreferences> getPreferences() async => MockSharedPreferences();
 }
-
-

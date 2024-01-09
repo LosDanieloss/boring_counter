@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '115678383346',
     projectId: 'boring-counter',
     storageBucket: 'boring-counter.appspot.com',
-    iosClientId: '115678383346-gki7if00j32kvlv040r7crhej28m0q5v.apps.googleusercontent.com',
+    iosClientId:
+        '115678383346-gki7if00j32kvlv040r7crhej28m0q5v.apps.googleusercontent.com',
     iosBundleId: 'com.example.softwarehut.flutter.boring-counter',
   );
 }
