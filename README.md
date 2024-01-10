@@ -64,11 +64,11 @@
 	<br />
 </div>
 
-There is many counters. However I didn't find one that really suited my needs so I created this one. Although it's called Boring in reality it's enhanced one. Main goal was to create Counter App that provides list of counters where each one could be increment independently; from list view. I find that usefull while doing my Diablo Uber Uniques grind since I'm big fan of statistics and like to keep track of things.
+There is many counters. However I didn't find one that really suited my needs so I created this one. Although it's called Boring in reality it's enhanced one. Main goal was to create Counter App that provides list of counters where each one could be increment independently; from list view. I find that useful while doing my Diablo Uber Uniques grind since I'm big fan of statistics and like to keep track of things.
 
 Along the way few other features were introduced to make whole App more usable. 
 
-Please refere to [Roadmap](#roadmap) for more details.
+Please refer to [Roadmap](#roadmap) for more details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,7 +85,7 @@ Please refere to [Roadmap](#roadmap) for more details.
 [![BLoC][technology-bloc]][technology-bloc-url]
 [![Dio][technology-dio]][technology-dio-url]
 [![Freezed][technology-freezed]][technology-freezed-url]
-[![Injetable][technology-injectable]][technology-injectable-url]
+[![Injectable][technology-injectable]][technology-injectable-url]
 [![Mockito][technology-mockito]][technology-mockito-url]
 [![Retrofit][technology-retrofit]][technology-retrofit-url]
 [![RxDart][technology-rxdart]][technology-rxdart-url]
@@ -161,7 +161,7 @@ $ open coverage/index.html
 To generate new coverage badge you can use [flutter_coverage_badge](https://github.com/amondnet/flutter_coverage_badge)
 
 ```sh
-$ flutter pub run flutter_covarage_badge
+$ flutter pub run flutter_coverage_badge
 ```
 
 
@@ -187,7 +187,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 - [X] Add Readme
 - [ ] Add License file
 - [ ] Add Changelog
-- [ ] Toogle mode for counters list to either manipulate counters or scroll the list
+- [ ] Toggle mode for counters list to either manipulate counters or scroll the list
 - [ ] Edit counter
 	- [ ] Name
  	- [ ] Reset back to 0
