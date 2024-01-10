@@ -185,7 +185,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
   	- [X] Using swiping gesture on Details screen
 - [X] Store counters data between App launches
 - [X] Add Readme
-- [ ] Add License file
+- [X] Add License file
 - [ ] Add Changelog
 - [ ] Toggle mode for counters list to either manipulate counters or scroll the list
 - [ ] Edit counter
