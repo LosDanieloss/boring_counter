@@ -66,7 +66,9 @@
 
 There is many counters. However I didn't find one that really suited my needs so I created this one. Although it's called Boring in reality it's enhanced one. Main goal was to create Counter App that provides list of counters where each one could be increment independently; from list view. I find that usefull while doing my Diablo Uber Uniques grind since I'm big fan of statistics and like to keep track of things.
 
-Along the way few other features were introduced to make whole App more usable. Please refere to [Roadmap](#roadmap) for more details.
+Along the way few other features were introduced to make whole App more usable. 
+
+Please refere to [Roadmap](#roadmap) for more details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -245,23 +247,33 @@ Use this space to list resources you find helpful and would like to give credit 
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
 
-[technology-flutter]: https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=blue
+[technology-flutter]: https://img.shields.io/badge/flutter-1a2d8f?style=for-the-badge&logo=flutter&logoColor=blue
 [technology-flutter-url]: https://flutter.dev/
-[technology-dart]: https://img.shields.io/badge/dart-000000?style=for-the-badge&logo=dart&logoColor=blue
+[technology-dart]: https://img.shields.io/badge/dart-1a2d8f?style=for-the-badge&logo=dart&logoColor=blue
 [technology-dart-url]: https://dart.dev/
-[technology-vgv-cli]: https://img.shields.io/badge/Very_Good_CLI-000000?style=for-the-badge&logo=vgv&logoColor=pink
+[technology-vgv-cli]: https://img.shields.io/badge/Very_Good_CLI-1a2d8f?style=for-the-badge&logo=vgv&logoColor=pink
 [technology-vgv-cli-url]: [very_good_cli_link]
-[technology-firebase]: https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=orange
+[technology-firebase]: https://img.shields.io/badge/Firebase-1a2d8f?style=for-the-badge&logo=firebase&logoColor=orange
 [technology-firebase-url]: https://firebase.google.com/
-[technology-auto_route]:
-[technology-auto_route-url]:
-[![BLoC][technology-bloc]][technology-bloc-url]
-[![Dio][technology-dio]][technology-dio-url]
-[![Freezed][technology-freezed]][technology-freezed-url]
-[![Injetable][technology-injectable]][technology-injectable-url]
-[![Mockito][technology-mockito]][technology-mockito-url]
-[![Retrofit][technology-retrofit]][technology-retrofit-url]
-[![RxDart][technology-rxdart]][technology-rxdart-url]
-[![Shared Preferences][technology-shared_preferences]][technology-shared_preferences-url]
-[![Integration tests][technology-integration_tests]][technology-integration_tests-url]
-[![Mocktail][technology-mocktail]][technology-mocktail-url]
+[technology-auto_route]: https://img.shields.io/badge/auto_route-1a2d8f?style=for-the-badge&logo=auto_route&logoColor=blue
+[technology-auto_route-url]: https://pub.dev/packages/auto_route
+[technology-bloc]: https://img.shields.io/badge/BLoC-1a2d8f?style=for-the-badge&logo=bloc&logoColor=blue
+[technology-bloc-url]: https://pub.dev/packages/flutter_bloc
+[technology-dio]: https://img.shields.io/badge/dio-1a2d8f?style=for-the-badge&logo=dio&logoColor=blue
+[technology-dio-url]: https://pub.dev/packages/dio
+[technology-freezed]: https://img.shields.io/badge/freezed-1a2d8f?style=for-the-badge&logo=freezed&logoColor=blue
+[technology-freezed-url]: https://pub.dev/packages/freezed
+[technology-injectable]: https://img.shields.io/badge/injectable-1a2d8f?style=for-the-badge&logo=injectable&logoColor=blue
+[technology-injectable-url]: https://pub.dev/packages/injectable
+[technology-mockito]: https://img.shields.io/badge/mockito-1a2d8f?style=for-the-badge&logo=mockito&logoColor=blue
+[technology-mockito-url]: https://pub.dev/packages/mockito
+[technology-retrofit]: https://img.shields.io/badge/retrofit-1a2d8f?style=for-the-badge&logo=retrofit&logoColor=blue
+[technology-retrofit-url]: https://pub.dev/packages/retrofit
+[technology-rxdart]: https://img.shields.io/badge/RxDart-1a2d8f?style=for-the-badge&logo=ReactiveX&logoColor=B7178C
+[technology-rxdart-url]: https://pub.dev/packages/rxdart
+[technology-shared_preferences]: https://img.shields.io/badge/Shared_preferences_plugin-1a2d8f?style=for-the-badge&logo=shared_preferences&logoColor=blue
+[technology-shared_preferences-url]: https://pub.dev/packages/shared_preferences
+[technology-integration_tests]: https://img.shields.io/badge/integration_tests-1a2d8f?style=for-the-badge&logo=integration_tests&logoColor=blue
+[technology-integration_tests-url]: https://docs.flutter.dev/testing/integration-tests
+[technology-mocktail]: https://img.shields.io/badge/mocktail-1a2d8f?style=for-the-badge&logo=mocktail&logoColor=blue
+[technology-mocktail-url]: https://pub.dev/packages/mocktail
