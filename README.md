@@ -35,6 +35,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#technologies">Technologies</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -57,21 +58,38 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<div align="center">
+	<img src="https://drive.google.com/uc?id=1hkfutlSWnpgwY0cOlmFgxQPmKhYX4pUP" />
+	<br />
+	<br />
+</div>
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+There is many counters. However I didn't find one that really suited my needs so I created this one. Although it's called Boring in reality it's enhanced one. Main goal was to create Counter App that provides list of counters where each one could be increment independently; from list view. I find that usefull while doing my Diablo Uber Uniques grind since I'm big fan of statistics and like to keep track of things.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Along the way few other features were introduced to make whole App more usable. Please refere to [Roadmap](#roadmap) for more details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+---
+
+
+## Technologies
+[![Flutter][technology-flutter]][technology-flutter-url]
+[![Dart][technology-dart]][technology-dart-url]
+[![Very Good CLI][technology-vgv-cli]][technology-vgv-cli-url]
+[![Firebase][technology-firebase]][technology-firebase-url]
+[![Auto Route][technology-auto_route]][technology-auto_route-url]
+[![BLoC][technology-bloc]][technology-bloc-url]
+[![Dio][technology-dio]][technology-dio-url]
+[![Freezed][technology-freezed]][technology-freezed-url]
+[![Injetable][technology-injectable]][technology-injectable-url]
+[![Mockito][technology-mockito]][technology-mockito-url]
+[![Retrofit][technology-retrofit]][technology-retrofit-url]
+[![RxDart][technology-rxdart]][technology-rxdart-url]
+[![Shared Preferences][technology-shared_preferences]][technology-shared_preferences-url]
+[![Integration tests][technology-integration_tests]][technology-integration_tests-url]
+[![Mocktail][technology-mocktail]][technology-mocktail-url]
 
 ---
 
@@ -80,20 +98,19 @@ Use the `BLANK_README.md` to get started.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Install Flutter & Flutter FVM for best experience
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/LosDanieloss/boring_counter.git
    ```
-3. Install NPM packages
+2. Navigate to main project directory
+3. Get dependencies
    ```sh
-   npm install
+   $ flutter pub get
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Run the App. For more information about that please see [Flavors](#flavors).
+   ```sh
+   $ flutter run --flavor development --target lib/main_development.dart
    ```
 
 
@@ -168,6 +185,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 - [X] Add Readme
 - [ ] Add License file
 - [ ] Add Changelog
+- [ ] Toogle mode for counters list to either manipulate counters or scroll the list
 - [ ] Edit counter
 	- [ ] Name
  	- [ ] Reset back to 0
@@ -226,3 +244,24 @@ Use this space to list resources you find helpful and would like to give credit 
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
+
+[technology-flutter]: https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=blue
+[technology-flutter-url]: https://flutter.dev/
+[technology-dart]: https://img.shields.io/badge/dart-000000?style=for-the-badge&logo=dart&logoColor=blue
+[technology-dart-url]: https://dart.dev/
+[technology-vgv-cli]: https://img.shields.io/badge/Very_Good_CLI-000000?style=for-the-badge&logo=vgv&logoColor=pink
+[technology-vgv-cli-url]: [very_good_cli_link]
+[technology-firebase]: https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=orange
+[technology-firebase-url]: https://firebase.google.com/
+[technology-auto_route]:
+[technology-auto_route-url]:
+[![BLoC][technology-bloc]][technology-bloc-url]
+[![Dio][technology-dio]][technology-dio-url]
+[![Freezed][technology-freezed]][technology-freezed-url]
+[![Injetable][technology-injectable]][technology-injectable-url]
+[![Mockito][technology-mockito]][technology-mockito-url]
+[![Retrofit][technology-retrofit]][technology-retrofit-url]
+[![RxDart][technology-rxdart]][technology-rxdart-url]
+[![Shared Preferences][technology-shared_preferences]][technology-shared_preferences-url]
+[![Integration tests][technology-integration_tests]][technology-integration_tests-url]
+[![Mocktail][technology-mocktail]][technology-mocktail-url]
