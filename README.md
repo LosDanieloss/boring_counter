@@ -231,7 +231,6 @@ Use this space to list resources you find helpful and would like to give credit 
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [Very Good Cli][very_good_cli_link]
-* [Flutter Coverage Badge](https://github.com/amondnet/flutter_coverage_badge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
