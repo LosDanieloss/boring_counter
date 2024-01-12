@@ -1,4 +1,4 @@
-name: boring_counter
+name: Analysis & validation
 
 concurrency:
   group: $-$
