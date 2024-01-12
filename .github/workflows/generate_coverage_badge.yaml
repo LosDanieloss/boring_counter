@@ -1,7 +1,7 @@
 name: Generate coverage badge
 
 concurrency:
-  group: $-$
+  group: ${{ github.workflow }}-${{ github.head_ref }}
   cancel-in-progress: true
 
 on:
@@ -14,10 +14,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.19.1]
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -25,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install and set Flutter version
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter_channel: stable
           flutter_version: 3.16.5
@@ -34,10 +30,10 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14.19.1
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.19.1
       - run: yarn install
       - run: yarn generate_coverage_badge
 
