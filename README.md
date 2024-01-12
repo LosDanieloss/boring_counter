@@ -186,7 +186,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 - [X] Store counters data between App launches
 - [X] Add Readme
 - [X] Add License file
-- [ ] Add Changelog
+- [X] Add Changelog
 - [ ] Toggle mode for counters list to either manipulate counters or scroll the list
 - [ ] Edit counter
 	- [ ] Name
