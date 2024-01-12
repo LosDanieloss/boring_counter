@@ -1,0 +1,15 @@
+{
+  "name": "boring_counter",
+  "version": "1.0.0",
+  "description": "Boring counter for you to count things",
+  "main": "index.js",
+  "author": "Daniel Łojewski <danielojewski@gmail.com>",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "lcov2badge": "^0.1.2"
+  },
+  "scripts": {
+    "generate_coverage_badge": "node coverage_badge_generator"
+  }
+}
