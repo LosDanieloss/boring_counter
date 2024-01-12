@@ -21,5 +21,9 @@
     "mostrado",
     "página",
     "Texto"
+  ],
+  "ignoreWords": [
+    "Diablo",
+    "Łojewski"
   ]
 }

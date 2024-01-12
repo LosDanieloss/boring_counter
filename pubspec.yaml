@@ -34,12 +34,12 @@ dependencies:
   retrofit: ^4.0.3
   rxdart: ^0.27.7
   shared_preferences: ^2.2.2
-  uuid: ^4.2.2
+  uuid: ^4.3.3
 
 dev_dependencies:
   auto_route_generator: ^7.3.2
   bloc_test: ^9.1.5
-  build_runner: ^2.4.7
+  build_runner: ^2.4.8
   flutter_test:
     sdk: flutter
   freezed: ^2.4.6
