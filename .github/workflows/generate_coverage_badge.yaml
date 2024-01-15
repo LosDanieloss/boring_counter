@@ -31,7 +31,7 @@ jobs:
         run: flutter test --coverage
 
       - name: Use Node.js 14.19.1
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 14.19.1
       - run: yarn install
