@@ -225,4 +225,144 @@ void main() {
       );
     },
   );
+
+  group('toggle counter onTap', () {
+    blocTest(
+      'Given freshly loaded counter '
+      'when cubit was just initialized '
+      'then counter onTap should be enabled',
+      build: () => CounterListCubit(
+        watchCountersUseCase: watchCountersUseCase,
+        createCounterUseCase: createCounterUseCase,
+        incrementCounterUseCase: incrementCounterUseCase,
+        mapper: mapper,
+      ),
+      setUp: () {
+        final controller = BehaviorSubject<List<Counter>>()
+          ..add([
+            const Counter(id: 'id', name: 'name', count: 0),
+          ]);
+        when(watchCountersUseCase.watch()).thenAnswer(
+          (realInvocation) => controller.stream,
+        );
+      },
+      act: (bloc) async {
+        bloc.watchCounters();
+        await Future.delayed(const Duration(milliseconds: 32), () => null);
+      },
+      expect: () => [
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: false,
+        ),
+      ],
+    );
+
+    blocTest(
+      'Given counters are loading '
+      'when toggle is clicked '
+      'then nothing will happen',
+      build: () => CounterListCubit(
+        watchCountersUseCase: watchCountersUseCase,
+        createCounterUseCase: createCounterUseCase,
+        incrementCounterUseCase: incrementCounterUseCase,
+        mapper: mapper,
+      ),
+      act: (bloc) async {
+        await bloc.toggleCounterOnTapDisabled();
+      },
+      expect: () => [
+        const CounterListState.loading(counters: []),
+      ],
+    );
+
+    blocTest(
+      'Given counters are already loaded & onTap is enabled '
+      'when toggle is clicked '
+      'then ready state with onTap disabled should be emitted',
+      build: () => CounterListCubit(
+        watchCountersUseCase: watchCountersUseCase,
+        createCounterUseCase: createCounterUseCase,
+        incrementCounterUseCase: incrementCounterUseCase,
+        mapper: mapper,
+      ),
+      setUp: () {
+        final controller = BehaviorSubject<List<Counter>>()
+          ..add([
+            const Counter(id: 'id', name: 'name', count: 0),
+          ]);
+        when(watchCountersUseCase.watch()).thenAnswer(
+          (realInvocation) => controller.stream,
+        );
+      },
+      act: (bloc) async {
+        bloc.watchCounters();
+        await Future.delayed(const Duration(milliseconds: 32), () => null);
+        await bloc.toggleCounterOnTapDisabled();
+      },
+      expect: () => [
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: false,
+        ),
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: true,
+        ),
+      ],
+    );
+
+    blocTest(
+      'Given counters are already loaded & onTap is disabled '
+      'when toggle is clicked '
+      'then ready state with onTap enabled should be emitted',
+      build: () => CounterListCubit(
+        watchCountersUseCase: watchCountersUseCase,
+        createCounterUseCase: createCounterUseCase,
+        incrementCounterUseCase: incrementCounterUseCase,
+        mapper: mapper,
+      ),
+      setUp: () {
+        final controller = BehaviorSubject<List<Counter>>()
+          ..add([
+            const Counter(id: 'id', name: 'name', count: 0),
+          ]);
+        when(watchCountersUseCase.watch()).thenAnswer(
+          (realInvocation) => controller.stream,
+        );
+      },
+      act: (bloc) async {
+        bloc.watchCounters();
+        await Future.delayed(const Duration(milliseconds: 32), () => null);
+        await bloc.toggleCounterOnTapDisabled();
+        await bloc.toggleCounterOnTapDisabled();
+      },
+      expect: () => [
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: false,
+        ),
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: true,
+        ),
+        const CounterListState.ready(
+          counters: [
+            UiCounter(id: 'id', name: 'name', count: 0),
+          ],
+          isCounterOnTapDisabled: false,
+        ),
+      ],
+    );
+  });
 }

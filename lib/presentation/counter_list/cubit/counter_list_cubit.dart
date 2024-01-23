@@ -79,6 +79,8 @@ class CounterListCubit extends Cubit<CounterListState> {
           isCounterOnTapDisabled: !readyState.isCounterOnTapDisabled,
         ),
       );
+    } else {
+      emit(state);
     }
   }
 
