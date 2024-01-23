@@ -281,6 +281,75 @@ void main() {
       );
     },
   );
+
+  group(
+    'Toggle counter onTap',
+    () {
+      setUp(
+        () {
+          when(
+            () => cubit.toggleCounterOnTapDisabled(),
+          ).thenAnswer((invocation) async {});
+        },
+      );
+
+      testWidgets(
+        'Given that counters are loading '
+        'when lock button is pressed '
+        'then toggle counter onTap is called ',
+        (tester) async {
+          const state = CounterListState.loading(counters: []);
+          whenListen(
+            cubit,
+            Stream.fromIterable([state]),
+            initialState: state,
+          );
+          final lockButtonFinder = find.byType(LockButton);
+
+          await _pumpView(
+            tester,
+            listView,
+            cubit,
+          );
+          await tester.tap(lockButtonFinder);
+
+          expect(lockButtonFinder, findsOneWidget);
+          verify(() => cubit.toggleCounterOnTapDisabled());
+        },
+      );
+
+      testWidgets(
+        'Given loaded counters list '
+        'when lock button is pressed '
+        'then toggle counter onTap is called ',
+        (tester) async {
+          final state = CounterListState.ready(
+            counters: shortCountersList,
+            isCounterOnTapDisabled: false,
+          );
+          whenListen(
+            cubit,
+            Stream.fromIterable([state]),
+            initialState: state,
+          );
+          final lockButtonFinder = find.byType(LockButton);
+
+          await _pumpView(
+            tester,
+            listView,
+            cubit,
+          );
+          await tester.tap(lockButtonFinder);
+          await tester.pumpAndSettle(
+            const Duration(milliseconds: 500),
+          );
+
+          expect(lockButtonFinder, findsOneWidget);
+          verify(() => cubit.toggleCounterOnTapDisabled());
+        },
+      );
+    },
+  );
 }
 
 Future<void> _pumpView(
