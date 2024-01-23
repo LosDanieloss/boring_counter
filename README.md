@@ -187,7 +187,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 - [X] Add Readme
 - [X] Add License file
 - [X] Add Changelog
-- [ ] Toggle mode for counters list to either manipulate counters or scroll the list
+- [X] Toggle mode for counters list to either manipulate counters or scroll the list
 - [ ] Edit counter
 	- [ ] Name
  	- [ ] Reset back to 0
