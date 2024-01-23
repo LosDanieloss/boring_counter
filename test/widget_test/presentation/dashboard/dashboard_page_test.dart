@@ -31,8 +31,18 @@ void main() {
 
           whenListen(
             counterListCubit,
-            Stream.fromIterable([const CounterListState.ready(counters: [])]),
-            initialState: const CounterListState.ready(counters: []),
+            Stream.fromIterable(
+              [
+                const CounterListState.ready(
+                  counters: [],
+                  isCounterOnTapDisabled: false,
+                ),
+              ],
+            ),
+            initialState: const CounterListState.ready(
+              counters: [],
+              isCounterOnTapDisabled: false,
+            ),
           );
         },
       );

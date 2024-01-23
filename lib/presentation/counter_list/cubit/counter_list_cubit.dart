@@ -54,9 +54,12 @@ class CounterListCubit extends Cubit<CounterListState> {
           ),
         )
         .toList();
+    final isCounterOnTapDisabled =
+        state is ReadyState && (state as ReadyState).isCounterOnTapDisabled;
     emit(
       CounterListState.ready(
         counters: uiCounters,
+        isCounterOnTapDisabled: isCounterOnTapDisabled,
       ),
     );
   }
@@ -67,6 +70,19 @@ class CounterListCubit extends Cubit<CounterListState> {
       createCounterUseCase.create(
         name: name,
       );
+
+  Future<void> toggleCounterOnTapDisabled() async {
+    if (state is ReadyState) {
+      final readyState = state as ReadyState;
+      emit(
+        readyState.copyWith(
+          isCounterOnTapDisabled: !readyState.isCounterOnTapDisabled,
+        ),
+      );
+    } else {
+      emit(state);
+    }
+  }
 
   Future<void> incrementCounter({
     required int counterIndex,

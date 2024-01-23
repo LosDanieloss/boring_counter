@@ -20,19 +20,23 @@ mixin _$CounterListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<UiCounter> counters) loading,
-    required TResult Function(List<UiCounter> counters) ready,
+    required TResult Function(
+            List<UiCounter> counters, bool isCounterOnTapDisabled)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<UiCounter> counters)? loading,
-    TResult? Function(List<UiCounter> counters)? ready,
+    TResult? Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<UiCounter> counters)? loading,
-    TResult Function(List<UiCounter> counters)? ready,
+    TResult Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,7 +172,9 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<UiCounter> counters) loading,
-    required TResult Function(List<UiCounter> counters) ready,
+    required TResult Function(
+            List<UiCounter> counters, bool isCounterOnTapDisabled)
+        ready,
   }) {
     return loading(counters);
   }
@@ -177,7 +183,8 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<UiCounter> counters)? loading,
-    TResult? Function(List<UiCounter> counters)? ready,
+    TResult? Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
   }) {
     return loading?.call(counters);
   }
@@ -186,7 +193,8 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<UiCounter> counters)? loading,
-    TResult Function(List<UiCounter> counters)? ready,
+    TResult Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -247,7 +255,7 @@ abstract class _$$ReadyStateImplCopyWith<$Res>
       __$$ReadyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UiCounter> counters});
+  $Res call({List<UiCounter> counters, bool isCounterOnTapDisabled});
 }
 
 /// @nodoc
@@ -262,12 +270,17 @@ class __$$ReadyStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? counters = null,
+    Object? isCounterOnTapDisabled = null,
   }) {
     return _then(_$ReadyStateImpl(
       counters: null == counters
           ? _value._counters
           : counters // ignore: cast_nullable_to_non_nullable
               as List<UiCounter>,
+      isCounterOnTapDisabled: null == isCounterOnTapDisabled
+          ? _value.isCounterOnTapDisabled
+          : isCounterOnTapDisabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -275,7 +288,9 @@ class __$$ReadyStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ReadyStateImpl implements ReadyState {
-  const _$ReadyStateImpl({required final List<UiCounter> counters})
+  const _$ReadyStateImpl(
+      {required final List<UiCounter> counters,
+      required this.isCounterOnTapDisabled})
       : _counters = counters;
 
   final List<UiCounter> _counters;
@@ -287,8 +302,11 @@ class _$ReadyStateImpl implements ReadyState {
   }
 
   @override
+  final bool isCounterOnTapDisabled;
+
+  @override
   String toString() {
-    return 'CounterListState.ready(counters: $counters)';
+    return 'CounterListState.ready(counters: $counters, isCounterOnTapDisabled: $isCounterOnTapDisabled)';
   }
 
   @override
@@ -296,12 +314,14 @@ class _$ReadyStateImpl implements ReadyState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyStateImpl &&
-            const DeepCollectionEquality().equals(other._counters, _counters));
+            const DeepCollectionEquality().equals(other._counters, _counters) &&
+            (identical(other.isCounterOnTapDisabled, isCounterOnTapDisabled) ||
+                other.isCounterOnTapDisabled == isCounterOnTapDisabled));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_counters));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_counters), isCounterOnTapDisabled);
 
   @JsonKey(ignore: true)
   @override
@@ -313,29 +333,33 @@ class _$ReadyStateImpl implements ReadyState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<UiCounter> counters) loading,
-    required TResult Function(List<UiCounter> counters) ready,
+    required TResult Function(
+            List<UiCounter> counters, bool isCounterOnTapDisabled)
+        ready,
   }) {
-    return ready(counters);
+    return ready(counters, isCounterOnTapDisabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<UiCounter> counters)? loading,
-    TResult? Function(List<UiCounter> counters)? ready,
+    TResult? Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
   }) {
-    return ready?.call(counters);
+    return ready?.call(counters, isCounterOnTapDisabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<UiCounter> counters)? loading,
-    TResult Function(List<UiCounter> counters)? ready,
+    TResult Function(List<UiCounter> counters, bool isCounterOnTapDisabled)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(counters);
+      return ready(counters, isCounterOnTapDisabled);
     }
     return orElse();
   }
@@ -373,11 +397,13 @@ class _$ReadyStateImpl implements ReadyState {
 }
 
 abstract class ReadyState implements CounterListState {
-  const factory ReadyState({required final List<UiCounter> counters}) =
-      _$ReadyStateImpl;
+  const factory ReadyState(
+      {required final List<UiCounter> counters,
+      required final bool isCounterOnTapDisabled}) = _$ReadyStateImpl;
 
   @override
   List<UiCounter> get counters;
+  bool get isCounterOnTapDisabled;
   @override
   @JsonKey(ignore: true)
   _$$ReadyStateImplCopyWith<_$ReadyStateImpl> get copyWith =>

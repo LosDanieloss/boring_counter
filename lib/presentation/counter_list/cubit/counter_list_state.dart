@@ -10,5 +10,6 @@ class CounterListState with _$CounterListState {
   }) = _LoadingState;
   const factory CounterListState.ready({
     required List<UiCounter> counters,
+    required bool isCounterOnTapDisabled,
   }) = ReadyState;
 }

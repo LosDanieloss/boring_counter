@@ -95,7 +95,7 @@ void main() {
     'Navigation',
     () {
       testWidgets(
-        'Given narrow screen '
+        'Given narrow screen and onTap is enabled '
         'when pressing item '
         'then tab is switched',
         (tester) async {
@@ -106,7 +106,9 @@ void main() {
               body: TabsRouterScope(
                 stateHash: 404,
                 controller: tabsRouter,
-                child: CounterItemWidget(counter: counter),
+                child: CounterItemWidget(
+                  counter: counter,
+                ),
               ),
             ),
             testRouter: router,
@@ -114,6 +116,32 @@ void main() {
           await tester.tap(itemFinder);
           await tester.pumpAndSettle();
           verify(tabsRouter.navigate(any));
+        },
+      );
+
+      testWidgets(
+        'Given narrow screen and onTap is disabled '
+        'when pressing item '
+        'then nothing happens',
+        (tester) async {
+          final itemFinder = find.byType(Card);
+          tester.setupNexusScreen();
+          await tester.pumpApp(
+            Scaffold(
+              body: TabsRouterScope(
+                stateHash: 404,
+                controller: tabsRouter,
+                child: CounterItemWidget(
+                  counter: counter,
+                  isOnTapDisabled: true,
+                ),
+              ),
+            ),
+            testRouter: router,
+          );
+          await tester.tap(itemFinder);
+          await tester.pumpAndSettle();
+          verifyNever(tabsRouter.navigate(any));
         },
       );
 
