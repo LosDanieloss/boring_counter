@@ -9,6 +9,8 @@ on:
     types: [opened, review_requested]
     branches:
       - main
+    paths:
+      - '**.dart'
 
 jobs:
   build:
