@@ -82,6 +82,7 @@ void main() {
                 count: 0,
               ),
             ],
+            isCounterOnTapDisabled: false,
           ),
         ],
         verify: (_) {
@@ -126,6 +127,7 @@ void main() {
             counters: [
               UiCounter(id: 'id', name: 'name', count: 0),
             ],
+            isCounterOnTapDisabled: false,
           ),
         ],
         verify: (_) {
@@ -209,6 +211,7 @@ void main() {
             counters: [
               UiCounter(id: 'id', name: 'name', count: 1),
             ],
+            isCounterOnTapDisabled: false,
           ),
         ],
         verify: (_) {

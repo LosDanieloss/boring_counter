@@ -56,7 +56,10 @@ void main() {
         () async {
           router = getIt.get<AppRouter>();
           cubit = getIt.get<CounterListCubit>() as MockCounterListCubit;
-          const state = CounterListState.ready(counters: []);
+          const state = CounterListState.ready(
+            counters: [],
+            isCounterOnTapDisabled: false,
+          );
           whenListen(
             cubit,
             Stream.fromIterable([state]),
@@ -145,7 +148,10 @@ void main() {
         'when showing counter list '
         'then should inform user that there are no counters',
         (tester) async {
-          const state = CounterListState.ready(counters: []);
+          const state = CounterListState.ready(
+            counters: [],
+            isCounterOnTapDisabled: false,
+          );
           whenListen(
             cubit,
             Stream.fromIterable([state]),
@@ -176,6 +182,7 @@ void main() {
         (tester) async {
           final state = CounterListState.ready(
             counters: shortCountersList,
+            isCounterOnTapDisabled: false,
           );
           whenListen(
             cubit,
@@ -201,6 +208,7 @@ void main() {
         (tester) async {
           final state = CounterListState.ready(
             counters: longCountersList,
+            isCounterOnTapDisabled: false,
           );
           whenListen(
             cubit,
@@ -248,6 +256,7 @@ void main() {
         (tester) async {
           final state = CounterListState.ready(
             counters: shortCountersList,
+            isCounterOnTapDisabled: false,
           );
           whenListen(
             cubit,

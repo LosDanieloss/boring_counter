@@ -52,16 +52,16 @@ class CounterView extends StatelessWidget {
               : const MissingCounter(),
         ),
       ),
-      floatingActionButton: Column(
+      floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          IncrementButton(
-            onPressed: () => context.read<CounterCubit>().increment(),
-          ),
-          const SizedBox(height: _buttonsDistance),
           DecrementButton(
             onPressed: () => context.read<CounterCubit>().decrement(),
+          ),
+          const SizedBox(width: _buttonsDistance),
+          IncrementButton(
+            onPressed: () => context.read<CounterCubit>().increment(),
           ),
         ],
       ),

@@ -14,7 +14,10 @@ void main() {
 
   setUp(() {
     widget = MultipleTapGestureWrapper(
-      state: CounterListState.ready(counters: List.empty()),
+      state: CounterListState.ready(
+        counters: List.empty(),
+        isCounterOnTapDisabled: false,
+      ),
       child: const SizedBox(
         height: 512,
         width: 512,
@@ -23,11 +26,17 @@ void main() {
     cubit = MockCounterListCubit();
     whenListen(
       cubit,
-      Stream.fromIterable([
-        const CounterListState.ready(counters: []),
-      ]),
+      Stream.fromIterable(
+        [
+          const CounterListState.ready(
+            counters: [],
+            isCounterOnTapDisabled: false,
+          ),
+        ],
+      ),
       initialState: const CounterListState.ready(
         counters: [],
+        isCounterOnTapDisabled: false,
       ),
     );
     registerFallbackValue(cubit);

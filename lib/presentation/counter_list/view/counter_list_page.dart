@@ -4,6 +4,7 @@ import 'package:boring_counter/presentation/counter/model/ui_counter.dart';
 import 'package:boring_counter/presentation/counter_list/counter_list.dart';
 import 'package:boring_counter/presentation/counter_list/view/counter_item_widget.dart';
 import 'package:boring_counter/presentation/counter_list/view/multiple_tap_gesture_detector.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -56,11 +57,20 @@ class NarrowPage extends StatelessWidget {
   const NarrowPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const CounterListView();
+  Widget build(BuildContext context) => const CounterListView(
+        isNeedsSpacingAtTheEnd: true,
+      );
 }
 
 class CounterListView extends StatelessWidget {
-  const CounterListView({super.key});
+  const CounterListView({
+    this.isNeedsSpacingAtTheEnd = false,
+    super.key,
+  });
+
+  final bool isNeedsSpacingAtTheEnd;
+
+  static const _buttonsDistance = 16.0;
 
   @override
   Widget build(BuildContext context) => BlocBuilder(
@@ -74,19 +84,35 @@ class CounterListView extends StatelessWidget {
                   children: [
                     MaybeCountersWidget(
                       counters: loadingState.counters,
+                      isNeedsSpacingAtTheEnd: isNeedsSpacingAtTheEnd,
                     ),
                     const LoadingWidget(),
                   ],
                 ),
                 ready: (readyState) => MaybeCountersWidget(
                   counters: readyState.counters,
+                  isNeedsSpacingAtTheEnd: true,
+                  isOnTapDisabled: readyState.isCounterOnTapDisabled,
                 ),
               ),
             ),
-            floatingActionButton: Column(
+            floatingActionButton: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                Visibility(
+                  visible: !kIsWeb,
+                  child: LockButton(
+                    isLocked: state.map(
+                      loading: (loadingState) => false,
+                      ready: (readyState) => readyState.isCounterOnTapDisabled,
+                    ),
+                    onPressed: () => context
+                        .read<CounterListCubit>()
+                        .toggleCounterOnTapDisabled(),
+                  ),
+                ),
+                const SizedBox(width: _buttonsDistance),
                 AddButton(
                   onPressed: () =>
                       context.read<CounterListCubit>().createCounter(
@@ -150,32 +176,50 @@ class LoadingWidget extends StatelessWidget {
 class MaybeCountersWidget extends StatelessWidget {
   const MaybeCountersWidget({
     required this.counters,
+    required this.isNeedsSpacingAtTheEnd,
+    this.isOnTapDisabled = false,
     super.key,
   });
 
   final List<UiCounter> counters;
+  final bool isNeedsSpacingAtTheEnd;
+  final bool isOnTapDisabled;
 
   @override
   Widget build(BuildContext context) => counters.isEmpty
       ? const _EmptyWidget()
       : _CountersWidget(
           counters: counters,
+          isNeedsSpacingAtTheEnd: isNeedsSpacingAtTheEnd,
+          isOnTapDisabled: isOnTapDisabled,
         );
 }
 
 class _CountersWidget extends StatelessWidget {
   const _CountersWidget({
     required this.counters,
+    required this.isNeedsSpacingAtTheEnd,
+    required this.isOnTapDisabled,
   });
 
   final List<UiCounter> counters;
+  final bool isNeedsSpacingAtTheEnd;
+  final bool isOnTapDisabled;
 
   @override
   Widget build(BuildContext context) => ListView.builder(
         itemCount: counters.length,
-        itemBuilder: (context, index) => CounterItemWidget(
-          key: ValueKey(counters[index].id),
-          counter: counters[index],
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.only(
+            bottom: (isNeedsSpacingAtTheEnd && index == counters.length - 1)
+                ? 64
+                : 0,
+          ),
+          child: CounterItemWidget(
+            key: ValueKey(counters[index].id),
+            counter: counters[index],
+            isOnTapDisabled: isOnTapDisabled,
+          ),
         ),
       );
 }
@@ -198,6 +242,26 @@ class _EmptyWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class LockButton extends StatelessWidget {
+  const LockButton({
+    required this.isLocked,
+    required this.onPressed,
+    super.key,
+  });
+
+  final bool isLocked;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) => FloatingActionButton(
+        onPressed: onPressed,
+        child: Icon(
+          isLocked ? Icons.lock_outline : Icons.lock_open_outlined,
+          color: isLocked ? Colors.red : Colors.white,
+        ),
+      );
 }
 
 class AddButton extends StatelessWidget {

@@ -139,17 +139,17 @@ Future<_i1.GetIt> init(
     preResolve: true,
   );
   await gh.factoryAsync<_i18.SharedPreferences>(
+    () => testModule.getPreferences(),
+    registerFor: {_tests},
+    preResolve: true,
+  );
+  await gh.factoryAsync<_i18.SharedPreferences>(
     () => genericModule.getPreferences(),
     registerFor: {
       _development,
       _staging,
       _production,
     },
-    preResolve: true,
-  );
-  await gh.factoryAsync<_i18.SharedPreferences>(
-    () => testModule.getPreferences(),
-    registerFor: {_tests},
     preResolve: true,
   );
   gh.factory<_i19.SplashCubit>(() => _i19.SplashCubit());

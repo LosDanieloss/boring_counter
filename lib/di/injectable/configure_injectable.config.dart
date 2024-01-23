@@ -9,11 +9,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i4;
-import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/prod_app_config.dart' as _i4;
 import 'package:boring_counter/config/app/staging_app_config.dart' as _i6;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
-    as _i27;
+    as _i26;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
     as _i31;
 import 'package:boring_counter/data_source/analytics/trackers/firebase_analytics_tracker.dart'
@@ -29,7 +29,7 @@ import 'package:boring_counter/data_source/counter/repository/stream_provider.da
 import 'package:boring_counter/data_source/crashlytics/default_crashlytics_repository.dart'
     as _i35;
 import 'package:boring_counter/data_source/crashlytics/error_tracker.dart'
-    as _i26;
+    as _i27;
 import 'package:boring_counter/data_source/crashlytics/trackers/firebase_error_tracker.dart'
     as _i12;
 import 'package:boring_counter/data_source/crashlytics/trackers/std_out_error_tracker.dart'
@@ -75,9 +75,9 @@ import 'package:logger/logger.dart' as _i13;
 import 'package:shared_preferences/shared_preferences.dart' as _i14;
 import 'package:uuid/uuid.dart' as _i20;
 
-const String _development = 'development';
-const String _production = 'production';
 const String _staging = 'staging';
+const String _production = 'production';
+const String _development = 'development';
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> init(
@@ -94,12 +94,12 @@ Future<_i1.GetIt> init(
   final crashlyticsModule = _$CrashlyticsModule();
   final genericModule = _$GenericModule();
   gh.factory<_i3.AppConfig>(
-    () => _i4.DevelopmentAppConfig(),
-    registerFor: {_development},
+    () => _i4.ProductionAppConfig(),
+    registerFor: {_production},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i5.ProductionAppConfig(),
-    registerFor: {_production},
+    () => _i5.DevelopmentAppConfig(),
+    registerFor: {_development},
   );
   gh.factory<_i3.AppConfig>(
     () => _i6.StagingAppConfig(),
@@ -150,23 +150,23 @@ Future<_i1.GetIt> init(
       _i24.DecrementCounterUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i25.IncrementCounterUseCase>(() =>
       _i25.IncrementCounterUseCase(repository: gh<_i21.CounterRepository>()));
-  gh.factory<List<_i26.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
-        gh<_i3.AppConfig>(),
-        gh<_i12.FirebaseErrorTracker>(),
-        gh<_i17.StdOutErrorTracker>(),
-      ));
-  gh.factory<List<_i27.AnalyticsTracker>>(
+  gh.factory<List<_i26.AnalyticsTracker>>(
       () => analyticsModule.getAnalyticsTrackers(
             gh<_i3.AppConfig>(),
             gh<_i10.FirebaseAnalyticsTracker>(),
             gh<_i16.StdOutAnalyticsTracker>(),
           ));
+  gh.factory<List<_i27.ErrorTracker>>(() => crashlyticsModule.getErrorTrackers(
+        gh<_i3.AppConfig>(),
+        gh<_i12.FirebaseErrorTracker>(),
+        gh<_i17.StdOutErrorTracker>(),
+      ));
   gh.factory<_i28.WatchCounterUseCase>(
       () => _i28.WatchCounterUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i29.WatchCountersUseCase>(() =>
       _i29.WatchCountersUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i30.AnalyticsRepository>(() => _i31.DefaultAnalyticsRepository(
-      trackers: gh<List<_i27.AnalyticsTracker>>()));
+      trackers: gh<List<_i26.AnalyticsTracker>>()));
   gh.factory<_i32.CounterCubit>(
     () => _i32.CounterCubit(
       watchCounterUseCase: gh<_i21.WatchCounterUseCase>(),
@@ -195,7 +195,7 @@ Future<_i1.GetIt> init(
   );
   gh.factory<_i34.CrashlyticsRepository>(() =>
       _i35.DefaultCrashlyticsRepository(
-          trackers: gh<List<_i26.ErrorTracker>>()));
+          trackers: gh<List<_i27.ErrorTracker>>()));
   gh.factory<_i36.ErrorTrackerUseCase>(() => _i36.ErrorTrackerUseCase(
       crashlyticsRepository: gh<_i34.CrashlyticsRepository>()));
   gh.factory<_i37.EventTrackerUseCase>(() => _i37.EventTrackerUseCase(
