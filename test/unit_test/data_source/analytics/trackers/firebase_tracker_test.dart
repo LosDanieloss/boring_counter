@@ -38,12 +38,6 @@ void main() {
               screenClass: 'testClass',
             ),
           );
-          verify(
-            analytics.setCurrentScreen(
-              screenName: 'test',
-              screenClassOverride: 'testClass',
-            ),
-          );
         },
       );
 
@@ -56,12 +50,6 @@ void main() {
           verify(
             analytics.logScreenView(
               screenName: 'test',
-            ),
-          );
-          verify(
-            analytics.setCurrentScreen(
-              screenName: 'test',
-              screenClassOverride: '',
             ),
           );
         },
