@@ -19,10 +19,6 @@ class FirebaseAnalyticsTracker implements AnalyticsTracker {
       screenName: screenName,
       screenClass: screenClass,
     );
-    await analytics.setCurrentScreen(
-      screenName: screenName,
-      screenClassOverride: screenClass ?? '',
-    );
   }
 
   @override
