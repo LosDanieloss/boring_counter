@@ -13,7 +13,7 @@ dependencies:
   dio_smart_retry: ^6.0.0
   firebase_analytics: ^10.8.3
   firebase_core: ^2.25.2
-  firebase_crashlytics: ^3.4.10
+  firebase_crashlytics: ^3.4.12
   firebase_performance: ^0.9.3+8
   flutter:
     sdk: flutter
