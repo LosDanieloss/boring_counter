@@ -3,9 +3,9 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:logger/src/log_level.dart' as _i3;
+import 'package:logger/src/log_level.dart' as _i4;
 import 'package:logger/src/logger.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -26,6 +26,13 @@ import 'package:mockito/mockito.dart' as _i1;
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLogger extends _i1.Mock implements _i2.Logger {
+  @override
+  _i3.Future<void> get init => (super.noSuchMethod(
+        Invocation.getter(#init),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
   @override
   void v(
     dynamic message, {
@@ -188,7 +195,7 @@ class MockLogger extends _i1.Mock implements _i2.Logger {
 
   @override
   void log(
-    _i3.Level? level,
+    _i4.Level? level,
     dynamic message, {
     DateTime? time,
     Object? error,
@@ -221,12 +228,12 @@ class MockLogger extends _i1.Mock implements _i2.Logger {
       ) as bool);
 
   @override
-  _i4.Future<void> close() => (super.noSuchMethod(
+  _i3.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
