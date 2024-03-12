@@ -35,7 +35,13 @@ extension PumpApp on WidgetTester {
     required AppRouter router,
     required String path,
   }) async {
-    await pumpWidget(App());
+    await pumpWidget(
+      MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: App(),
+      ),
+    );
     unawaited(router.replaceNamed(DashboardPage.path));
     await pumpAndSettle();
   }
