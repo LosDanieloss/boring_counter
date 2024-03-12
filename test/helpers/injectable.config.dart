@@ -115,13 +115,13 @@ Future<_i1.GetIt> init(
     () => _i6.DevelopmentAppConfig(),
     registerFor: {_development},
   );
-  gh.singleton<_i7.AppRouter>(_i7.AppRouter());
+  gh.singleton<_i7.AppRouter>(() => _i7.AppRouter());
   gh.singleton<_i8.CounterCubit>(
-    _i9.MockCounterCubit(),
+    () => _i9.MockCounterCubit(),
     registerFor: {_tests},
   );
   gh.singleton<_i10.CounterListCubit>(
-    _i11.MockCounterListCubit(),
+    () => _i11.MockCounterListCubit(),
     registerFor: {_tests},
   );
   gh.factory<_i12.DataSourceCounterMapper>(
@@ -163,11 +163,11 @@ Future<_i1.GetIt> init(
     () => genericModule.getUuidGenerator(),
     preResolve: true,
   );
-  gh.singleton<_i25.CounterRepository>(_i26.PrefsCounterRepository(
-    preferences: gh<_i18.SharedPreferences>(),
-    mapper: gh<_i12.DataSourceCounterMapper>(),
-    streamProvider: gh<_i22.StreamProvider>(),
-  ));
+  gh.singleton<_i25.CounterRepository>(() => _i26.PrefsCounterRepository(
+        preferences: gh<_i18.SharedPreferences>(),
+        mapper: gh<_i12.DataSourceCounterMapper>(),
+        streamProvider: gh<_i22.StreamProvider>(),
+      ));
   gh.factory<_i27.CreateCounterUseCase>(() =>
       _i27.CreateCounterUseCase(repository: gh<_i25.CounterRepository>()));
   gh.factory<_i28.DecrementCounterUseCase>(() =>
