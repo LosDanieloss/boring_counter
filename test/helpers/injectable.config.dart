@@ -9,8 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
-import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/prod_app_config.dart' as _i6;
 import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
     as _i30;
@@ -84,8 +84,8 @@ import '../widget_test/presentation/counter_list/cubit/counter_list_cubit.dart'
 import 'test_module.dart' as _i46;
 
 const String _staging = 'staging';
-const String _production = 'production';
 const String _development = 'development';
+const String _production = 'production';
 const String _tests = 'tests';
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -108,12 +108,12 @@ Future<_i1.GetIt> init(
     registerFor: {_staging},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i5.ProductionAppConfig(),
-    registerFor: {_production},
+    () => _i5.DevelopmentAppConfig(),
+    registerFor: {_development},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i6.DevelopmentAppConfig(),
-    registerFor: {_development},
+    () => _i6.ProductionAppConfig(),
+    registerFor: {_production},
   );
   gh.singleton<_i7.AppRouter>(() => _i7.AppRouter());
   gh.singleton<_i8.CounterCubit>(
@@ -139,17 +139,17 @@ Future<_i1.GetIt> init(
     preResolve: true,
   );
   await gh.factoryAsync<_i18.SharedPreferences>(
-    () => testModule.getPreferences(),
-    registerFor: {_tests},
-    preResolve: true,
-  );
-  await gh.factoryAsync<_i18.SharedPreferences>(
     () => genericModule.getPreferences(),
     registerFor: {
       _development,
       _staging,
       _production,
     },
+    preResolve: true,
+  );
+  await gh.factoryAsync<_i18.SharedPreferences>(
+    () => testModule.getPreferences(),
+    registerFor: {_tests},
     preResolve: true,
   );
   gh.factory<_i19.SplashCubit>(() => _i19.SplashCubit());

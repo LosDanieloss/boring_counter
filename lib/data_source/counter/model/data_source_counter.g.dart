@@ -7,8 +7,7 @@ part of 'data_source_counter.dart';
 // **************************************************************************
 
 _$DataSourceCounterImpl _$$DataSourceCounterImplFromJson(
-  Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     _$DataSourceCounterImpl(
       id: json['id'] as String,
       name: json['name'] as String,
@@ -16,8 +15,7 @@ _$DataSourceCounterImpl _$$DataSourceCounterImplFromJson(
     );
 
 Map<String, dynamic> _$$DataSourceCounterImplToJson(
-  _$DataSourceCounterImpl instance,
-) =>
+        _$DataSourceCounterImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
