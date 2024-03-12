@@ -9,9 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:boring_counter/config/app/app_config.dart' as _i3;
-import 'package:boring_counter/config/app/dev_app_config.dart' as _i5;
-import 'package:boring_counter/config/app/prod_app_config.dart' as _i4;
-import 'package:boring_counter/config/app/staging_app_config.dart' as _i6;
+import 'package:boring_counter/config/app/dev_app_config.dart' as _i6;
+import 'package:boring_counter/config/app/prod_app_config.dart' as _i5;
+import 'package:boring_counter/config/app/staging_app_config.dart' as _i4;
 import 'package:boring_counter/data_source/analytics/analytics_tracker.dart'
     as _i26;
 import 'package:boring_counter/data_source/analytics/default_analytics_repository.dart'
@@ -94,18 +94,18 @@ Future<_i1.GetIt> init(
   final crashlyticsModule = _$CrashlyticsModule();
   final genericModule = _$GenericModule();
   gh.factory<_i3.AppConfig>(
-    () => _i4.ProductionAppConfig(),
+    () => _i4.StagingAppConfig(),
+    registerFor: {_staging},
+  );
+  gh.factory<_i3.AppConfig>(
+    () => _i5.ProductionAppConfig(),
     registerFor: {_production},
   );
   gh.factory<_i3.AppConfig>(
-    () => _i5.DevelopmentAppConfig(),
+    () => _i6.DevelopmentAppConfig(),
     registerFor: {_development},
   );
-  gh.factory<_i3.AppConfig>(
-    () => _i6.StagingAppConfig(),
-    registerFor: {_staging},
-  );
-  gh.singleton<_i7.AppRouter>(_i7.AppRouter());
+  gh.singleton<_i7.AppRouter>(() => _i7.AppRouter());
   gh.factory<_i8.DataSourceCounterMapper>(() => _i8.DataSourceCounterMapper());
   gh.factory<_i9.FirebaseAnalytics>(
       () => analyticsModule.getFirebaseAnalytics());
@@ -139,11 +139,11 @@ Future<_i1.GetIt> init(
     () => genericModule.getUuidGenerator(),
     preResolve: true,
   );
-  gh.singleton<_i21.CounterRepository>(_i22.PrefsCounterRepository(
-    preferences: gh<_i14.SharedPreferences>(),
-    mapper: gh<_i8.DataSourceCounterMapper>(),
-    streamProvider: gh<_i18.StreamProvider>(),
-  ));
+  gh.singleton<_i21.CounterRepository>(() => _i22.PrefsCounterRepository(
+        preferences: gh<_i14.SharedPreferences>(),
+        mapper: gh<_i8.DataSourceCounterMapper>(),
+        streamProvider: gh<_i18.StreamProvider>(),
+      ));
   gh.factory<_i23.CreateCounterUseCase>(() =>
       _i23.CreateCounterUseCase(repository: gh<_i21.CounterRepository>()));
   gh.factory<_i24.DecrementCounterUseCase>(() =>
